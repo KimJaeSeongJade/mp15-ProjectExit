@@ -7,8 +7,29 @@
 ## 기록 표
 
 | 에셋 이름 | 종류 | 출처 (URL) | 라이선스 | 사용처 | 받은 사람 | 날짜 |
-|---|---|---|---|---|---|---|
-| | | | | | | |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|Mini Simple Characters Skeleton Free Demo|3D Character|[URL](https://assetstore.unity.com/packages/3d/characters/humanoids/fantasy/mini-simple-characters-skeleton-free-demo-262897) |Standard Unity Asset Store EULA |적대 캐릭터 모델 |정재윤|2026.09.19|
+|Forest - Low Poly Toon Battle Arena / Tower Defense Pack|3D Environments |[URL](https://assetstore.unity.com/packages/3d/environments/forest-low-poly-toon-battle-arena-tower-defense-pack-100080#description) |Standard Unity Asset Store EULA |맵 구성 리소스 |정재윤|2026.09.20|
+|Arcade Machines Pack 02 - Lowpoly Pack|3D Props |[URL](https://assetstore.unity.com/packages/3d/props/arcade-machines-pack-02-lowpoly-pack-79442) |Standard Unity Asset Store EULA |상호작용 설치물 리소스 |정재윤|2026.09.20|
+|Lowpoly Anubis - FREE|3D Props |[URL](https://assetstore.unity.com/packages/3d/props/interior/lowpoly-anubis-free-191360) |Standard Unity Asset Store EULA |상호작용 설치물 리소스 |정재윤|2026.09.20|
+|Dog Knight PBR Polyart|3D Character|[URL](https://assetstore.unity.com/packages/3d/characters/animals/dog-knight-pbr-polyart-135227) |Standard Unity Asset Store EULA |플레이어 캐릭터 모델 |정재윤|2026.09.20|
+|Happy Idle|3D Animation|[URL](https://www.mixamo.com/#/?page=1&query=idle)|Adobe Mixamo (Royalty-Free License)|플레이어 대기 애니메이션|정재윤|2026.09.20|
+|Run Forward|3D Animation|[URL](https://www.mixamo.com/#/?page=1&query=forward)|Adobe Mixamo (Royalty-Free License)|플레이어 이동 애니메이션|정재윤|2026.09.20|
+|Running Backward|3D Animation|[URL](https://www.mixamo.com/#/?page=1&query=Backward)|Adobe Mixamo (Royalty-Free License)|플레이어 이동 애니메이션|정재윤|2026.09.20|
+|Right Starfe|3D Animation|[URL](https://www.mixamo.com/#/?page=1&query=Right)|Adobe Mixamo (Royalty-Free License)|플레이어 이동 애니메이션|정재윤|2026.09.20|
+|Left Starfe|3D Animation|[URL](https://www.mixamo.com/#/?page=1&query=Left)|Adobe Mixamo (Royalty-Free License)|플레이어 이동 애니메이션|정재윤|2026.09.20|
+|Jumping|3D Animation|[URL](https://www.mixamo.com/#/?page=1&query=Jump)|Adobe Mixamo (Royalty-Free License)|플레이어 점프 애니메이션|정재윤|2026.09.20|
+|Silly Dancing|3D Animation|[URL](https://www.mixamo.com/#/?page=1&query=)|Adobe Mixamo (Royalty-Free License)|플레이어 상호작용 애니메이션|정재윤|2026.09.20|
+|Rumba Dancing|3D Animation|[URL](https://www.mixamo.com/#/?page=1&query=)|Adobe Mixamo (Royalty-Free License)|플레이어 상호작용 애니메이션|정재윤|2026.09.20|
+|Using A Fax Machine|3D Animation|[URL](https://www.mixamo.com/#/?page=1&query=)|Adobe Mixamo (Royalty-Free License)|플레이어 상호작용 애니메이션|정재윤|2026.09.20|
+|Hip Hop Dancing|3D Animation|[URL](https://www.mixamo.com/#/?page=4&query=)|Adobe Mixamo (Royalty-Free License)|플레이어 상호작용 애니메이션|정재윤|2026.09.20|
+|Falling Back Death|3D Animation|[URL](https://www.mixamo.com/#/?page=1&query=Death)|Adobe Mixamo (Royalty-Free License)|플레이어 사망 애니메이션|정재윤|2026.09.20|
+|Offensive Idle|3D Animation|[URL](https://www.mixamo.com/#/?page=1&query=idle)|Adobe Mixamo (Royalty-Free License)|적 대기 애니메이션|정재윤|2026.09.20|
+|Standing Run Forward|3D Animation|[URL](https://www.mixamo.com/#/?page=1&query=forward)|Adobe Mixamo (Royalty-Free License)|적 이동 애니메이션|정재윤|2026.09.20|
+|Standing Run Backward|3D Animation|[URL](https://www.mixamo.com/#/?page=2&query=Backward)|Adobe Mixamo (Royalty-Free License)|적 이동 애니메이션|정재윤|2026.09.20|
+|Standing Run Right|3D Animation|[URL](https://www.mixamo.com/#/?page=1&query=Right)|Adobe Mixamo (Royalty-Free License)|적 이동 애니메이션|정재윤|2026.09.20|
+|Standing Run Left|3D Animation|[URL](https://www.mixamo.com/#/?page=1&query=Left)|Adobe Mixamo (Royalty-Free License)|적 이동 애니메이션|정재윤|2026.09.20|
+|Standing 2H Magic Area Attack 01|3D Animation|[URL](https://www.mixamo.com/#/?page=1&query=Attack)|Adobe Mixamo (Royalty-Free License)|적 공격 애니메이션|정재윤|2026.09.20|
 
 ### 항목 설명
 
