@@ -30,6 +30,7 @@
 |Standing Run Right|3D Animation|[URL](https://www.mixamo.com/#/?page=1&query=Right)|Adobe Mixamo (Royalty-Free License)|적 이동 애니메이션|정재윤|2026.09.20|
 |Standing Run Left|3D Animation|[URL](https://www.mixamo.com/#/?page=1&query=Left)|Adobe Mixamo (Royalty-Free License)|적 이동 애니메이션|정재윤|2026.09.20|
 |Standing 2H Magic Area Attack 01|3D Animation|[URL](https://www.mixamo.com/#/?page=1&query=Attack)|Adobe Mixamo (Royalty-Free License)|적 공격 애니메이션|정재윤|2026.09.20|
+|메이플스토리 서체|Font|[URL](https://maplestory.nexon.com/media/font)|무료((주)넥슨코리아)|UI 폰트|정재윤|2026.09.22|
 
 ### 항목 설명
 
