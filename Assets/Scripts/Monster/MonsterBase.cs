@@ -5,25 +5,25 @@ using UnityEngine;
 public enum MonsterState
 {
     Idle,
-    Patrol, 
+    Patrol,
+    Tracking,
     Attack
 }
 
 public class MonsterBase : MonoBehaviour, IAttackable
 {
-    [SerializeField] private float _moveSpeed;
     [SerializeField] private int _attackDamage;
-    [SerializeField] private Animator _animator;
-    [SerializeField] private List<Transform> _wayPoints; // 패트롤 포인트 리스트들
+    [SerializeField] private Pattern _currentPattern;
+    // [SerializeField] private Animator _animator;
+    [field: SerializeField] public float moveSpeed { get; protected set; }
     
     private MonsterState _monsterstate;
     private int _patrolIndex;
-    
-    
+
     
     private void Patrol()
     {
-        
+        _currentPattern.OnAction();
     }
     
     // IAttackable - Attack 구현
