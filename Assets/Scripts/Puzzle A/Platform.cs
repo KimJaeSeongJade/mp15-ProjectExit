@@ -13,7 +13,7 @@ public class Platform : MonoBehaviour
     
     private Renderer _renderer;
     private Coroutine _resetRoutine;
-    private bool _isBaseColor => _baseMat
+    private bool _isBaseColor => _baseMat;
     
     private void Awake()
     {
