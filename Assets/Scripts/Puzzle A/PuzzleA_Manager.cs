@@ -3,67 +3,61 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class PuzzleA_Manager : Singleton<PuzzleA_Manager>
+public class PuzzleA_Manager : MonoBehaviour
 {
-   [SerializeField] private List<Renderer> _clearArray;
+   [SerializeField] private List<Platform> _clearArray;
    [SerializeField] private Material _base;
 
-   public List<Renderer> _playerArray = new List<Renderer>(6);
-   
-   private Renderer _renderer;
-   private Coroutine _resetRoutine;
+   public List<Platform> _playerArray = new(6);
+
    private bool IsClear;
-   
    private int clearCount;
    
    private void Awake()
    {
-      SetSingleton();
       clearCount = 0;
       IsClear = false;
    }
-   
-   public void ResetPlatform()
+
+   public void OnStepPlatform(Platform platform)
    {
-      if (_resetRoutine != null)
-      {
-         StopCoroutine(_resetRoutine);
-         _resetRoutine = null;
-      }
+      _playerArray.Add(platform);
       
-      for (int i = 0; i < _playerArray.Count; i++)
-      {
-          _playerArray[i].material = _base;
-      }
+      bool isClear = true;
       
-      _playerArray.Clear();
-      clearCount = 0;
-   }
-   
-   public void IsInOrder() 
-   { 
       for (int i = 0; i < _playerArray.Count; i++)
       {
          if (_playerArray[i] != _clearArray[i])
          {
-            Debug.Log("오답입니다.");
-            // 추가 구현 : 깜빡이다가 리셋 되도록?
-            ResetPlatform();
-            clearCount = 0;
+            isClear = false;
             break;
          }
-         else if (_playerArray[i] == _clearArray[i])
-         {
-            clearCount++;
-            Debug.Log($"PuzzleA_Mnager : 정답 갯수 {clearCount}");
-         }
+      }
+      
+      if (!isClear)
+      {
+         ResetPlatforms();
+         _playerArray.Clear();
+         IsClear = false;
       }
 
-      if (clearCount >= 21)
+      if (isClear && _playerArray.Count == _clearArray.Count)
       {
-         Debug.Log($"PuzzleA_Manager : 퍼즐A 클리어.");
-         clearCount = 0;
+         foreach (Platform p in _playerArray)
+         {
+            p.FixOnColor();
+            p.Clear();
+         }
+
          IsClear = true;
+      }
+   }
+
+   public void ResetPlatforms()
+   {
+      foreach (Platform platform in _playerArray)
+      {
+         platform.ResetPlatform();
       }
    }
 }

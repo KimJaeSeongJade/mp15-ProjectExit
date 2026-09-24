@@ -7,28 +7,35 @@ public class Platform : MonoBehaviour
 {
     [Header("Platform Materials Settings")]
     [SerializeField] private Material _baseMat;
+
     [SerializeField] private Material _platformColor;
     [SerializeField] private float _colorDuration;
-    
+
+    [SerializeField] private PuzzleA_Manager _manager;
     private Renderer _renderer;
     private Coroutine _resetRoutine;
+    private bool _isClear;
+    
     
     private void Awake()
     {
         _renderer = GetComponent<Renderer>();
-        OffColor();
+        _isClear = false;
+    }
+
+    private void Start()
+    {
+        _renderer.material = _baseMat;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !_isClear)
         {
             OnColor();
-            
-            PuzzleA_Manager.Instance._playerArray.Add(_renderer);
-            StartCoroutine(Campare());
         }
     }
+
     public void OnColor()
     {
         _renderer.material = _platformColor;
@@ -40,6 +47,22 @@ public class Platform : MonoBehaviour
             _resetRoutine = null;
         }
         _resetRoutine = StartCoroutine(ColorDuration());
+
+        if (!_manager._playerArray.Contains(this))
+        {
+            _manager.OnStepPlatform(this);
+        }
+    }
+
+    public void ResetPlatform()
+    {
+        OffColor();
+
+        if (_resetRoutine != null)
+        {
+            StopCoroutine(_resetRoutine);
+            _resetRoutine = null;
+        }
     }
 
     private void OffColor()
@@ -47,18 +70,25 @@ public class Platform : MonoBehaviour
         _renderer.material = _baseMat;
     }
 
-    private IEnumerator Campare()
-    {
-        yield return new WaitForSeconds(1f);
-        PuzzleA_Manager.Instance.IsInOrder();
-    }
-    
     private IEnumerator ColorDuration()
     {
-        // 추가구현 : 제한시간이 가까워오면 깜빡이기
         yield return new WaitForSeconds(_colorDuration);
-        Debug.Log("시간 초과입니다.");
-        PuzzleA_Manager.Instance.ResetPlatform();
+        OffColor();
     }
-    
+
+    public void FixOnColor()
+    {
+        if (_resetRoutine != null)
+        {
+            StopCoroutine(_resetRoutine);
+            _resetRoutine = null;
+        }
+
+        _renderer.material = _platformColor;
+    }
+
+    public void Clear()
+    {
+        _isClear = true;
+    }
 }
