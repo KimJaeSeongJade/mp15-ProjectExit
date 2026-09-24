@@ -5,56 +5,27 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
-    [SerializeField] private float _timeOut;
-    
-    [Header("Platform Materials Settings")]
     [SerializeField] private Material _baseMat;
     [SerializeField] private Material _onStepMat;
     
     private Renderer _renderer;
     private Coroutine _resetRoutine;
-    private bool _isBaseColor => _baseMat
+  //  private bool _isBaseColor;
     
     private void Awake()
     {
         _renderer = GetComponent<Renderer>();
-        OffColor();
+        PuzzleA_Manager.Instance.OffColor();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log($"{other.name} (이)가 버튼 위에 올라왔습니다.");
-            OnColor();
+            Debug.Log("Platform : 퍼즐A 시작.");  // UI 로 띄워주면 좋겠다.
+            PuzzleA_Manager.Instance.OnColor();
         }
     }
 
-    public void OnColor()
-    {
-        Debug.Log("컬러 변경요청");
-        _renderer.material = _onStepMat;
-
-        if (_resetRoutine != null)
-        {
-            StopCoroutine(_resetRoutine);
-            _resetRoutine = null;
-        }
-
-        _resetRoutine = StartCoroutine(Timeout());
-    }
-
-    public void OffColor()
-    {
-        _renderer.material = _baseMat;
-    }
-
-    private IEnumerator Timeout()
-    {
-        Debug.Log("타임아웃 시작");
-        yield return new WaitForSeconds(_timeOut);
-        OffColor();
-    }
-
-
+   
 }

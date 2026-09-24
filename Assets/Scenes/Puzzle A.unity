@@ -373,6 +373,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 187257d5862844a46be92708e427fe6a, type: 3}
+--- !u!23 &356775991 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6574537705821086308, guid: 187257d5862844a46be92708e427fe6a, type: 3}
+  m_PrefabInstance: {fileID: 356775990}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &480362968
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -438,6 +443,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 187257d5862844a46be92708e427fe6a, type: 3}
+--- !u!23 &480362969 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6574537705821086308, guid: 187257d5862844a46be92708e427fe6a, type: 3}
+  m_PrefabInstance: {fileID: 480362968}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1040326523
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -503,6 +513,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 187257d5862844a46be92708e427fe6a, type: 3}
+--- !u!23 &1040326524 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6574537705821086308, guid: 187257d5862844a46be92708e427fe6a, type: 3}
+  m_PrefabInstance: {fileID: 1040326523}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1063997158
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -584,6 +599,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 187257d5862844a46be92708e427fe6a, type: 3}
+--- !u!23 &1063997159 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6574537705821086308, guid: 187257d5862844a46be92708e427fe6a, type: 3}
+  m_PrefabInstance: {fileID: 1063997158}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1360225976
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,6 +613,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1360225977}
+  - component: {fileID: 1360225978}
   m_Layer: 0
   m_Name: PuzzleAManager
   m_TagString: Untagged
@@ -615,6 +636,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1360225978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360225976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c55656f1d0a883f4aa0f11084335f258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _destroyOnLoad: 0
+  _platforms:
+  - {fileID: 96513485232299826}
+  - {fileID: 1063997159}
+  - {fileID: 356775991}
+  - {fileID: 1040326524}
+  - {fileID: 480362969}
+  - {fileID: 1891276807}
 --- !u!1 &1427811395
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,7 +758,7 @@ Transform:
   m_GameObject: {fileID: 1427811395}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.86, z: 0}
+  m_LocalPosition: {x: 2.99, y: 0.86, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -921,6 +962,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 187257d5862844a46be92708e427fe6a, type: 3}
+--- !u!23 &1891276807 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6574537705821086308, guid: 187257d5862844a46be92708e427fe6a, type: 3}
+  m_PrefabInstance: {fileID: 1891276806}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &96513485232299825
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -986,6 +1032,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 187257d5862844a46be92708e427fe6a, type: 3}
+--- !u!23 &96513485232299826 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6574537705821086308, guid: 187257d5862844a46be92708e427fe6a, type: 3}
+  m_PrefabInstance: {fileID: 96513485232299825}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
