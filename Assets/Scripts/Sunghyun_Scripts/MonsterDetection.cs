@@ -7,31 +7,38 @@ public class MonsterDetection : MonoBehaviour
 {
     [SerializeField] private float _DetectAngle;
     [SerializeField] private float _offsetYPosition;
-    [SerializeField] private float _moveSpeed;
-    [SerializeField] private LayerMask _layerMask;
     [SerializeField] private float _returnDelay;
+    [SerializeField] private LayerMask _layerMask;
     
     private SphereCollider _collider;
     private Transform _transformInTrigger;
+    private Transform _monsterPostion;
     private Vector3 _monsterRayPoint;
     private Vector3 _targetRayPoint;
     private Vector3 _rayDirection;
-    private float _detectRange;
-    private Transform _monsterPostion;
-    private bool _remainPosition;
     private Vector3 _lastPostion;
+    private float _detectRange;
+    private bool _remainPosition;
+    private bool IsTargeting;
+    private float _moveSpeed;
+    private MonsterBase _monsterBase;
     
+    private bool IsInPlayerLayer(GameObject target)
+    {
+        return (_layerMask.value & (1 << target.layer)) != 0;
+    }
 
+    // --------------------
     private void Awake() => CacheComponents();
 
     private void Start()
     {
-        _detectRange = _collider.radius;
+        Init();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (IsInPlayerLayer(other.gameObject))
         {
             _transformInTrigger = other.transform;
             _remainPosition = false;
@@ -40,18 +47,25 @@ public class MonsterDetection : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (IsInPlayerLayer(other.gameObject))
         {
-            _lastPostion = other.transform.position;
-            _remainPosition = true;
+            if (IsTargeting)
+            {
+                _lastPostion = other.transform.position;
+                _remainPosition = true;
+                IsTargeting = false;
+            }
             _transformInTrigger = null;
         }
     }
 
     private void Update()
     {
+        Debug.Log(_moveSpeed);
         DetectingPlayer();
     }
+    
+    // --------------------
     
     private void CacheComponents()
     {
@@ -59,6 +73,11 @@ public class MonsterDetection : MonoBehaviour
         _monsterPostion = transform.parent;
     }
 
+    private void Init()
+    {
+        _detectRange = _collider.radius;
+        //_moveSpeed = moveSpeed;
+    }
 
     private void DetectingPlayer()
     {
@@ -68,21 +87,22 @@ public class MonsterDetection : MonoBehaviour
         {
             MoveRemainPosition();
 
-            if (_monsterPostion.position == _lastPostion)
+            if (Vector3.Distance(_monsterPostion.position, _lastPostion) < 0.1f)
             {
                 _remainPosition = false;
             }
             return;
         }
         
-        
         if(IsPlayerInDetectRange(_transformInTrigger) && IsRaycastReached(_transformInTrigger))
         {
+            IsTargeting = true;
+            
+            if (Vector3.Distance(_monsterPostion.position, _transformInTrigger.position) < 0.1f)
+            {
+                // 공격
+            }
             MoveMonster();
-        }
-        else
-        {
-            // 패트롤
         }
     }
 
@@ -141,9 +161,10 @@ public class MonsterDetection : MonoBehaviour
         
         if(Physics.Raycast(ray, out hit, _detectRange))
         {
-            if (!hit.transform.CompareTag("Player")) return false;
-            
-            return true;
+            if (IsInPlayerLayer(hit.transform.gameObject))
+            {
+                return true;
+            }
         }
         return false;
     }
@@ -165,7 +186,6 @@ public class MonsterDetection : MonoBehaviour
         
         Gizmos.DrawRay(transform.position, leftDir * _detectRange);
         Gizmos.DrawRay(transform.position, rightDir * _detectRange);
-        
         
         // 레이캐스트
         Gizmos.color = Color.blue;
