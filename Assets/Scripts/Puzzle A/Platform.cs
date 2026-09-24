@@ -5,56 +5,91 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
-    [SerializeField] private float _timeOut;
-    
     [Header("Platform Materials Settings")]
     [SerializeField] private Material _baseMat;
-    [SerializeField] private Material _onStepMat;
-    
+
+    [SerializeField] private Material _platformColor;
+    [SerializeField] private float _colorDuration;
+
+    [SerializeField] private PuzzleA_Manager _manager;
     private Renderer _renderer;
     private Coroutine _resetRoutine;
-    private bool _isBaseColor => _baseMat;
+
+    private bool _isClear;
+   
     
     private void Awake()
     {
         _renderer = GetComponent<Renderer>();
-        OffColor();
+        _isClear = false;
+    }
+
+    private void Start()
+    {
+        _renderer.material = _baseMat;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !_isClear)
         {
-            Debug.Log($"{other.name} (이)가 버튼 위에 올라왔습니다.");
             OnColor();
         }
     }
 
     public void OnColor()
     {
-        Debug.Log("컬러 변경요청");
-        _renderer.material = _onStepMat;
+        _renderer.material = _platformColor;
+        
+        // 타임아웃이 돌아가고 있으면 리셋시키는 코드
+        if (_resetRoutine != null)  
+        {
+            StopCoroutine(_resetRoutine);
+            _resetRoutine = null;
+        }
+        _resetRoutine = StartCoroutine(ColorDuration());
+
+        if (!_manager._playerArray.Contains(this))
+        {
+            _manager.OnStepPlatform(this);
+        }
+    }
+
+    public void ResetPlatform()
+    {
+        OffColor();
 
         if (_resetRoutine != null)
         {
             StopCoroutine(_resetRoutine);
             _resetRoutine = null;
         }
-
-        _resetRoutine = StartCoroutine(Timeout());
     }
 
-    public void OffColor()
+    private void OffColor()
     {
         _renderer.material = _baseMat;
     }
 
-    private IEnumerator Timeout()
+    private IEnumerator ColorDuration()
     {
-        Debug.Log("타임아웃 시작");
-        yield return new WaitForSeconds(_timeOut);
+        yield return new WaitForSeconds(_colorDuration);
         OffColor();
     }
 
+    public void FixOnColor()
+    {
+        if (_resetRoutine != null)
+        {
+            StopCoroutine(_resetRoutine);
+            _resetRoutine = null;
+        }
 
+        _renderer.material = _platformColor;
+    }
+
+    public void Clear()
+    {
+        _isClear = true;
+    }
 }
