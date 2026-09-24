@@ -64,7 +64,6 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 4d7c127af7b8189488d48e583c70a5aa, type: 2}
-  - {fileID: 2100000, guid: 4d7c127af7b8189488d48e583c70a5aa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -119,4 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32598e04a2156284588d44c9fec85ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _baseMat: {fileID: 2100000, guid: 4d7c127af7b8189488d48e583c70a5aa, type: 2}
+  _onStepMat: {fileID: 0}
+  _clearArray: []
   _timeOut: 5
