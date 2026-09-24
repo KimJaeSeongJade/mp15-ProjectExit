@@ -12,23 +12,19 @@ public class PuzzleA_Manager : Singleton<PuzzleA_Manager>
    
    private Renderer _renderer;
    private Coroutine _resetRoutine;
-   private int clear;
+   private bool IsClear;
+   
+   private int clearCount;
    
    private void Awake()
    {
       SetSingleton();
-      clear = 0;
+      clearCount = 0;
+      IsClear = false;
    }
-
-   private void Update()
-   {
-      Test();
-   }
-
-
+   
    public void ResetPlatform()
    {
-      Debug.Log($"PuzzleA_Manager : 오답입니다.");
       for (int i = 0; i < _playerArray.Count; i++)
       {
           _playerArray[i].material = _base;
@@ -39,39 +35,35 @@ public class PuzzleA_Manager : Singleton<PuzzleA_Manager>
          _resetRoutine = null;
       }
       _playerArray.Clear();
-      clear = 0;
+      clearCount = 0;
    }
    
-   public void IsInOrder()
+   public void IsInOrder() 
    { 
       for (int i = 0; i < _playerArray.Count; i++)
       {
          if (_playerArray[i] != _clearArray[i])
          {
+            Debug.Log("오답입니다.");
             // 추가 구현 : 깜빡이다가 리셋 되도록?
             ResetPlatform();
-            clear = 0;
+            clearCount = 0;
             break;
          }
          else if (_playerArray[i] == _clearArray[i])
          {
-            ++clear;
-            Debug.Log($"PuzzleA_Mnager : 정답 갯수 {clear}");
+            clearCount++;
+            Debug.Log($"PuzzleA_Mnager : 정답 갯수 {clearCount}");
          }
       }
 
-      if (clear >= 6)
+      if (clearCount >= 21)
       {
          Debug.Log($"PuzzleA_Manager : 퍼즐A 클리어.");
+         clearCount = 0;
+         IsClear = true;
       }
    }
    
-   private void Test()
-   {
-      if (Input.GetKey(KeyCode.Alpha1))
-      {
-         Debug.Log($"플레이어 리스트 {_playerArray[0].name}");
-         Debug.Log($"정답 리스트 {_clearArray[0].name}{_clearArray[1].name}{_clearArray[2].name}{_clearArray[3].name}{_clearArray[4].name}{_clearArray[5].name}");
-      }
-   }
+
 }

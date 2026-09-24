@@ -26,7 +26,7 @@ public class Platform : MonoBehaviour
             OnColor();
             
             PuzzleA_Manager.Instance._playerArray.Add(_renderer);
-            Campare();
+            StartCoroutine(Campare());
         }
     }
     public void OnColor()
@@ -47,9 +47,9 @@ public class Platform : MonoBehaviour
         _renderer.material = _baseMat;
     }
 
-    private IEnumerable Campare()
+    private IEnumerator Campare()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         PuzzleA_Manager.Instance.IsInOrder();
     }
     
@@ -57,10 +57,8 @@ public class Platform : MonoBehaviour
     {
         // 추가구현 : 제한시간이 가까워오면 깜빡이기
         yield return new WaitForSeconds(_colorDuration);
+        Debug.Log("시간 초과입니다.");
         PuzzleA_Manager.Instance.ResetPlatform();
     }
-
-
-   
-
+    
 }
