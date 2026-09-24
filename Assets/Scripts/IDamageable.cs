@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    // Player 데미지
+    public void TakeDamage(int damage);
 }
