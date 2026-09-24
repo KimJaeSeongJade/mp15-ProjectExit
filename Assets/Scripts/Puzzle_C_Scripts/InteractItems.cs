@@ -10,11 +10,19 @@ public class InteractItems : MonoBehaviour, IJyInteractable
     private JyPlayerController _playerController;
     
     private Transform _getGrapPoint;
+    [SerializeField] private GoalPoint _goalPoint;
     
+    private void Awake() => Init();
     
     private void FixedUpdate()
     {
         FollowPlayer();
+    }
+    
+    private void OnDestroy()
+    {
+        if (_goalPoint != null)
+            _goalPoint.OnClearStateChanged -= HandleClearStateChanged;
     }
     
     public void Interact(IJyInteractor owner)
@@ -39,8 +47,21 @@ public class InteractItems : MonoBehaviour, IJyInteractable
         transform.Translate(_playerController.GetPlayerRigidbody.velocity * Time.deltaTime, Space.World);
     }
 
-    public void ReleasePlayer()
+    private void Init()
     {
-        
+        if (_goalPoint == null)
+            _goalPoint = FindObjectOfType<GoalPoint>(); // 씬에 하나뿐이라면
+
+        if (_goalPoint != null)
+            _goalPoint.OnClearStateChanged += HandleClearStateChanged;
+
+    }
+    
+    private void HandleClearStateChanged(bool isClear)
+    {
+        if (isClear)
+        {
+            Destroy(gameObject);
+        }
     }
 }
