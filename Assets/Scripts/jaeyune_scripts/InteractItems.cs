@@ -6,57 +6,41 @@ using UnityEngine.UIElements;
 
 public class InteractItems : MonoBehaviour, IJyInteractable
 {
-    public GameObject InteractItem { get => gameObject; }
-
-    private Transform _grabPoint;
-    private Rigidbody _rb;
-    private bool _isHold;
-
-    private void Awake() => Init();
-    private void Update() => MoveToPlayer();
+    public GameObject GmObject { get => gameObject; }
+    private JyPlayerController _playerController;
+    
+    private Transform _getGrapPoint;
+    
+    
+    private void FixedUpdate()
+    {
+        FollowPlayer();
+    }
     
     public void Interact(IJyInteractor owner)
     {
         if (!(owner is JyPlayerController))
-        {
             return;
-        }
+
+        _playerController = (JyPlayerController)owner;
+
+        _getGrapPoint = _playerController.GrapPoint;
         
-        JyPlayerController _player = (JyPlayerController)owner;
-        _grabPoint = _player._grabPoint;
-        _isHold = true;
+        transform.position = _getGrapPoint.position;
         
-        if (_rb != null)
-        {
-            _rb.isKinematic = true;
-            _rb.useGravity = false;
-        }
+        //Destroy(gameObject);
     }
 
-    private void Init()
+    private void FollowPlayer()
     {
-        _rb = GetComponent<Rigidbody>();
-    }
-    
-    public void Release()
-    {
-        _isHold = false;
-        _grabPoint = null;
-
-        if (_rb != null)
-        {
-            _rb.isKinematic = false;
-            _rb.useGravity = true;
-        }
-    }
-    
-    private void MoveToPlayer()
-    {
-        if (!_isHold || _grabPoint == null)
-        {
+        if (_playerController == null) 
             return;
-        }
+        
+        transform.Translate(_playerController.GetPlayerRigidbody.velocity * Time.deltaTime, Space.World);
+    }
 
-        transform.position = new Vector3(_grabPoint.position.x, _grabPoint.position.y, _grabPoint.position.z);
+    public void ReleasePlayer()
+    {
+        
     }
 }

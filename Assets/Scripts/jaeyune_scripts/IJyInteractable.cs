@@ -4,7 +4,8 @@ using UnityEngine;
 
 public interface IJyInteractable
 {
-    public GameObject InteractItem { get; }
-    
+    public GameObject GmObject { get; }
+
+    // 상호 작용을 당할 때 누군지 알아야 한다.
     public void Interact(IJyInteractor owner);
 }
