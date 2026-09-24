@@ -7,15 +7,11 @@ public class Platform : MonoBehaviour
 {
     [Header("Platform Materials Settings")]
     [SerializeField] private Material _baseMat;
-    [SerializeField] private Material _onStepMat;
-    [SerializeField] private Renderer[] _clearArray;
-    [SerializeField] private float _timeOut;
+    [SerializeField] private Material _platformColor;
+    [SerializeField] private float _colorDuration;
     
     private Renderer _renderer;
     private Coroutine _resetRoutine;
-    private Renderer[] _playerArray = new Renderer[6];
-    
-    
     
     private void Awake()
     {
@@ -27,13 +23,15 @@ public class Platform : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Platform : 퍼즐A 시작.");  // UI 로 띄워주면 좋겠다.
             OnColor();
+            
+            PuzzleA_Manager.Instance._playerArray.Add(_renderer);
+            Campare();
         }
     }
     public void OnColor()
     {
-        _renderer.material = _onStepMat;
+        _renderer.material = _platformColor;
         
         // 타임아웃이 돌아가고 있으면 리셋시키는 코드
         if (_resetRoutine != null)  
@@ -41,16 +39,28 @@ public class Platform : MonoBehaviour
             StopCoroutine(_resetRoutine);
             _resetRoutine = null;
         }
-        _resetRoutine = StartCoroutine(Timeout());
+        _resetRoutine = StartCoroutine(ColorDuration());
     }
 
-    public void OffColor()
+    private void OffColor()
     {
         _renderer.material = _baseMat;
     }
-    private IEnumerator Timeout()
+
+    private IEnumerable Campare()
     {
-        yield return new WaitForSeconds(_timeOut);
-        OffColor();
+        yield return new WaitForSeconds(2f);
+        PuzzleA_Manager.Instance.IsInOrder();
     }
+    
+    private IEnumerator ColorDuration()
+    {
+        // 추가구현 : 제한시간이 가까워오면 깜빡이기
+        yield return new WaitForSeconds(_colorDuration);
+        PuzzleA_Manager.Instance.ResetPlatform();
+    }
+
+
+   
+
 }
