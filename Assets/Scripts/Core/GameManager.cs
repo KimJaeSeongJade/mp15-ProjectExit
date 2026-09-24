@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -40,5 +41,10 @@ public class GameManager : Singleton<GameManager>
         OnGameOver?.Invoke();
         // Time.timeScale = 0;
         // 이후 필요한 로직 작성
+    }
+
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }

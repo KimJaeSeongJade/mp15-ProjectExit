@@ -14,8 +14,9 @@ public class Platform : MonoBehaviour
     [SerializeField] private PuzzleA_Manager _manager;
     private Renderer _renderer;
     private Coroutine _resetRoutine;
+
     private bool _isClear;
-    
+   
     
     private void Awake()
     {
