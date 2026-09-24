@@ -45,3 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _destroyOnLoad: 0
+  _pausePanel: {fileID: 8267458398971909176, guid: 5f0ed1b175eea614bb1ef1b5cff8fe48, type: 3}
+  _pauseKey: 113

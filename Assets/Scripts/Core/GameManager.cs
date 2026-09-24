@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
     private void Awake() => SetSingleton();
-
+    
     public event Action OnGameStart;
     public event Action OnGameOver;
     public event Action OnGamePause;
@@ -28,7 +28,7 @@ public class GameManager : Singleton<GameManager>
         // Time.timeScale = 0;
         // 이후 필요한 로직 작성
     }
-
+    
     public void ResumeGame()
     {
         OnGameResume?.Invoke();
