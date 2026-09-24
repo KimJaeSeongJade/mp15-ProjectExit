@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3223822902152069082}
   - component: {fileID: 2866004558531820689}
   - component: {fileID: 6126536719806469626}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Block_2_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,9 +94,9 @@ GameObject:
   - component: {fileID: 6715022359394254797}
   - component: {fileID: 4754676717069035408}
   - component: {fileID: 8575998171826974065}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PFB_Block_8
-  m_TagString: Untagged
+  m_TagString: Key
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
