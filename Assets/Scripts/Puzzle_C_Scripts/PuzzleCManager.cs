@@ -29,7 +29,7 @@ public class PuzzleCManager : MonoBehaviour
         }
     }
 
-    private void HandleGoalPointClearChanged(bool _)
+    private void HandleGoalPointClearChanged(bool isCheck)
     {
         CheckAllClear();
     }
