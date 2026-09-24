@@ -66,6 +66,4 @@ public class PuzzleA_Manager : Singleton<PuzzleA_Manager>
          IsClear = true;
       }
    }
-   
-
 }
