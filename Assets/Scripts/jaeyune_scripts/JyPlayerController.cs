@@ -1,80 +1,82 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class JyPlayerController : MonoBehaviour, IJyInteractor
 {
-    [SerializeField] private float _moveSpeed;
-    
-    [field: SerializeField] public Transform _grabPoint;
-    [SerializeField] private Transform _interactPoint;
-    
-    [SerializeField] private float _interactDistance;
-    [SerializeField] private LayerMask _interactLayer;
-    
-    private IJyInteractable _interactTarget;
-    private IJyInteractable _holdItem;
+    // Rigidbody를 통한 velocity.
+    [field: SerializeField] public float _playerMoveSpeed;
+    private Rigidbody _rigidbody;
     
     
+    [SerializeField] private Transform _muzzlePoint;
+    [field: SerializeField] public Transform GrapPoint;
+    
+    
+    private float _rayDistance = 2f;
+    private IJyInteractable _item;
+
+    public Rigidbody GetPlayerRigidbody => _rigidbody;
+    
+    private void Awake() => Init();
     private void Update()
     {
-        PlayerMoveInputControll();
-        DetectInteractable();
-
+        DetectItem();  
         GetInteract();
     }
-    
-    private void PlayerMoveInputControll()
+
+    private void FixedUpdate()
     {
-        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        transform.Translate(movement * _moveSpeed * Time.deltaTime);
+        Move();
     }
 
-    public GameObject InteractTarget { get => gameObject; }
+    private Vector3 ReadMoveInput()
+    {
+        float x = Input.GetAxisRaw("Horizontal");
+        float z = Input.GetAxisRaw("Vertical");
+
+        return new Vector3(x, 0, z).normalized;
+    }
+
+    private void Move()
+    {
+        Vector3 input = ReadMoveInput();
+        
+        Vector3 direction = transform.right * input.x + transform.forward * input.z;
+        Vector3 vel = new Vector3(direction.x * _playerMoveSpeed, _rigidbody.velocity.y,
+                                       direction.z * _playerMoveSpeed);
+        
+        _rigidbody.velocity = vel;
+    }
     
+    
+    public GameObject GmOjt { get => gameObject; }
+
     public void TryInteract()
     {
-        if (_holdItem != null)
+        if (_item != null)
         {
-            ReleaseItem();
-            return;
-        }
-
-        if (_interactTarget != null)
-        {
-            _interactTarget.Interact(this);
-            _holdItem = _interactTarget;
+            _item.Interact(this);
+            Debug.Log($"TryInteract: {name} interacted with {_item}");
         }
     }
 
-    private void DetectInteractable()
+    private void DetectItem()
     {
-        if (_holdItem != null)
-        {
-            _interactTarget = null;
-            return;
-        }
-        
-        Ray ray = new Ray(_interactPoint.position, _interactPoint.forward);
+        Ray ray = new Ray(_muzzlePoint.position, _muzzlePoint.forward);
         RaycastHit hit;
-        
-        if (Physics.Raycast(ray, out hit, _interactDistance, _interactLayer))
+
+        if (Physics.Raycast(ray, out hit, _rayDistance))
         {
-            _interactTarget = hit.collider.GetComponentInParent<IJyInteractable>();
+            Debug.DrawRay(ray.origin, ray.direction * _rayDistance, Color.red);
+            _item = hit.collider.GetComponent<IJyInteractable>();
+            Debug.Log($"DetectItem: {name} interacted with {_item}");
         }
         else
         {
-            _interactTarget = null;
+            _item = null;
         }
-    }
-    
-    private void ReleaseItem()
-    {
-        if (_holdItem is InteractItems item)
-        {
-            item.Release();
-        }
-       _holdItem = null;
     }
 
     private void GetInteract()
@@ -82,7 +84,11 @@ public class JyPlayerController : MonoBehaviour, IJyInteractor
         if (Input.GetKeyDown(KeyCode.F))
         {
             TryInteract();
-            Debug.Log("Try Interact");
         }
+    }
+
+    private void Init()
+    {
+        _rigidbody = GetComponent<Rigidbody>();
     }
 }
