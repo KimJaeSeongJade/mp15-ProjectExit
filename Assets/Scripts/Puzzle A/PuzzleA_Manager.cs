@@ -25,15 +25,17 @@ public class PuzzleA_Manager : Singleton<PuzzleA_Manager>
    
    public void ResetPlatform()
    {
-      for (int i = 0; i < _playerArray.Count; i++)
-      {
-          _playerArray[i].material = _base;
-      }
       if (_resetRoutine != null)
       {
          StopCoroutine(_resetRoutine);
          _resetRoutine = null;
       }
+      
+      for (int i = 0; i < _playerArray.Count; i++)
+      {
+          _playerArray[i].material = _base;
+      }
+      
       _playerArray.Clear();
       clearCount = 0;
    }
