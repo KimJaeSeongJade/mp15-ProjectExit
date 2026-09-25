@@ -36,10 +36,11 @@ public class InGameUIManager : MonoBehaviour
     {
         _howToPlayUIStartButton.onClick.AddListener(PressToPlay);
         
-        _pauseQUIContinueButton.onClick.AddListener(OnClickPauseUIContinue);
-        _pauseQUIExitButton.onClick.AddListener(OnClickPauseUIExit);
+        _pauseQUIContinueButton.onClick.AddListener(OnClickContinue);
+        _pauseQUIExitButton.onClick.AddListener(OnClickUIExit);
         
-        _clearQUIExitButton.onClick.AddListener(OnClickPauseUIExit);
+        _clearQUIExitButton.onClick.AddListener(OnClickUIExit);
+        _clearQUIAgainButton.onClick.AddListener(OnClickRetryGame);
     }
 
     private void BindGameFlowEvents()
@@ -66,16 +67,17 @@ public class InGameUIManager : MonoBehaviour
         
         _howToPlayUIStartButton.onClick.RemoveListener(PressToPlay);
         
-        _pauseQUIContinueButton.onClick.RemoveListener(OnClickPauseUIContinue);
-        _pauseQUIExitButton.onClick.RemoveListener(OnClickPauseUIExit);
+        _pauseQUIContinueButton.onClick.RemoveListener(OnClickContinue);
+        _pauseQUIExitButton.onClick.RemoveListener(OnClickUIExit);
         
-        _clearQUIExitButton.onClick.RemoveListener(OnClickPauseUIExit);
+        _clearQUIExitButton.onClick.RemoveListener(OnClickUIExit);
+        _clearQUIAgainButton.onClick.RemoveListener(OnClickRetryGame);
     }
 
     private void BeforePlaying() =>GameManager.Instance.PauseGame();
     private void PressToPlay() => GameManager.Instance.StartGame();
-    private void OnClickPauseUIContinue() => GameManager.Instance.ResumeGame();
-    private void OnClickPauseUIExit()
+    private void OnClickContinue() => GameManager.Instance.ResumeGame();
+    private void OnClickUIExit()
     {
         GameManager.Instance.LoadScene("GameTitle");
         
@@ -182,7 +184,12 @@ public class InGameUIManager : MonoBehaviour
         
         if (_bgm != null)
         {
-            _bgm.Pause();
+            _bgm.Stop();
         }
+    }
+
+    private void OnClickRetryGame()
+    {
+        GameManager.Instance.LoadScene("InGameUI");
     }
 }
