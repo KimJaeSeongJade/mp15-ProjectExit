@@ -7,7 +7,6 @@ public class MonsterDetection : MonoBehaviour
 {
     [SerializeField] private float _DetectAngle;
     [SerializeField] private float _offsetYPosition;
-    [SerializeField] private float _returnDelay;
     [SerializeField] private LayerMask _layerMask;
     
     private SphereCollider _collider;
@@ -16,20 +15,10 @@ public class MonsterDetection : MonoBehaviour
     private Vector3 _monsterRayPoint;
     private Vector3 _targetRayPoint;
     private Vector3 _rayDirection;
-    private Vector3 _lastPostion;
     private float _detectRange;
-    private bool _remainPosition;
-    private bool IsTargeting;
-    private float _moveSpeed;
-    private MonsterBase _monsterBase;
-    private WaitForSeconds _waitForSeconds = new WaitForSeconds(2f);
-
-
-
-    public Transform _playerTransform { get; private set; }
-    private bool isDetectedTrigger => _playerTransform != null;
-    private bool isPlayerInsight;
-    public bool IsDetected => isDetectedTrigger && isPlayerInsight;
+    
+    
+    public Transform PlayerTransform { get; private set; }
 
     private bool IsInPlayerLayer(GameObject target)
     {
@@ -50,7 +39,6 @@ public class MonsterDetection : MonoBehaviour
         if (IsInPlayerLayer(other.gameObject))
         {
             _transformInTrigger = other.transform;
-            _remainPosition = false;
         }
     }
 
@@ -58,20 +46,12 @@ public class MonsterDetection : MonoBehaviour
     {
         if (IsInPlayerLayer(other.gameObject))
         {
-            if (IsTargeting)
-            {
-                _lastPostion = other.transform.position;
-                _remainPosition = true;
-                IsTargeting = false;
-            }
             _transformInTrigger = null;
         }
     }
 
     private void Update()
     {
-        Debug.Log(_moveSpeed);
-        _monsterBase.DoAction();
         DetectingPlayer();
     }
     
@@ -80,68 +60,31 @@ public class MonsterDetection : MonoBehaviour
     private void CacheComponents()
     {
         _collider = GetComponent<SphereCollider>();
-        _monsterBase = GetComponentInParent<MonsterBase>();
         _monsterPostion = transform.parent;
     }
 
     private void Init()
     {
         _detectRange = _collider.radius;
-        _moveSpeed = _monsterBase.MoveSpeed;
     }
 
     private void DetectingPlayer()
     {
-        if (_transformInTrigger == null && !_remainPosition) return; // 처음 시작하여 플레이어 정보가 없을때
-
-        if (_remainPosition) // 플레이어 감지가 끊기고 마지막위치로 이동할때
+        if (_transformInTrigger == null)
         {
-            MoveRemainPosition();
-
-            if (Vector3.Distance(_monsterPostion.position, _lastPostion) < 0.1f)
-            {
-                _remainPosition = false;
-                StartCoroutine(IdleBeforePatrol());
-            }
+            PlayerTransform = null;
             return;
         }
         
         if(IsPlayerInDetectRange(_transformInTrigger) && IsRaycastReached(_transformInTrigger))
         {
-            StopCoroutine(IdleBeforePatrol());
-            
-            IsTargeting = true;
-            _monsterBase.ChangeChasePattern();
-            if (Vector3.Distance(_monsterPostion.position, _transformInTrigger.position) < 0.1f)
-            {
-                // 공격
-            }
-            MoveMonster();
+            PlayerTransform = _transformInTrigger;
         }
     }
-
-    /// <summary>
-    /// 플레이어 추적함수
-    /// </summary>
-    private void MoveMonster()
-    {
-        Vector3 dir = _transformInTrigger.position - _monsterPostion.position;
-            
-        _monsterPostion.Translate(dir.normalized * _moveSpeed * Time.deltaTime, Space.World);
-        
-        _monsterPostion.LookAt(_transformInTrigger);
-    }
-
-    /// <summary>
-    /// 플레이어가 부채꼴 영역 밖으로 벗어나
-    /// 플레이어 마지막 위치로 이동하는 함수
-    /// </summary>
-    private void MoveRemainPosition()
-    {
-        Vector3 dir = (_lastPostion -  _monsterPostion.position).normalized;
-        _monsterPostion.position += dir * _moveSpeed * Time.deltaTime;
-    }
     
+    /// <summary>
+    /// 2차필터 : 벡터내적 활용한 부채꼴 감지
+    /// </summary>
     private bool IsPlayerInDetectRange(Transform TriggerTransform)
     {
         Vector3 vectorToTarget = (TriggerTransform.position - transform.position).normalized;
@@ -154,6 +97,9 @@ public class MonsterDetection : MonoBehaviour
         return (targetDot >= threshold);
     }
 
+    /// <summary>
+    /// 3차필터 : Raycast
+    /// </summary>
     private bool IsRaycastReached(Transform TriggerTransform)
     {
         _monsterRayPoint = new Vector3(
@@ -181,12 +127,6 @@ public class MonsterDetection : MonoBehaviour
             }
         }
         return false;
-    }
-
-    private IEnumerator IdleBeforePatrol()
-    {
-        yield return _waitForSeconds;
-        _monsterBase.ChangePatrolPattern();
     }
     
     

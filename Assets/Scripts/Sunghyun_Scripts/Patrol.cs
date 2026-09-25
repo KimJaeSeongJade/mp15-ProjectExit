@@ -7,6 +7,7 @@ public class Patrol : Pattern
 {
     [SerializeField] private List<WayPoint> _wayPoints;
 
+    private MonsterDetection _detection;
     private MonsterBase _monsterBase;
     private Vector3 _nextPosition;
     private int _currentWayPointIndex = 0;
@@ -34,6 +35,7 @@ public class Patrol : Pattern
     private void CacheComponents()
     {
         _monsterBase = GetComponent<MonsterBase>();
+        _detection = GetComponentInChildren<MonsterDetection>();
     }
 
     private void Init()
@@ -44,6 +46,12 @@ public class Patrol : Pattern
     
     public override void OnAction()
     {
+        if (_detection.PlayerTransform != null)
+        {
+            _monsterBase.ChangeChasePattern();
+            return;
+        }
+        
         if (Vector3.Distance(transform.position, _nextPosition) > 0.2f)
         {
             MoveToPosition();
@@ -111,11 +119,13 @@ public class Patrol : Pattern
     /// </summary>
     private void MoveToPosition()
     {
+        Vector3 dir = _nextPosition - transform.position;
         transform.position = Vector3.MoveTowards(
             transform.position,
             _nextPosition,
             _moveSpeed * Time.deltaTime);
         
-        transform.rotation = Quaternion.LookRotation(_nextPosition - transform.position, transform.up);
+     
+        transform.rotation = Quaternion.LookRotation(dir, transform.up);
     }
 }
