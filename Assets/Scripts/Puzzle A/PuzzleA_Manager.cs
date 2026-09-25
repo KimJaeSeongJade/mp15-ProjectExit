@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,7 +23,8 @@ public class PuzzleA_Manager : MonoBehaviour
       IsClear = false;
       _textInfo.text = "=RAINBOW=";
    }
-   
+
+
    public void OnStepPlatform(Platform platform)
    {
       _playerArray.Add(platform);

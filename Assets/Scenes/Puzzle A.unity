@@ -669,30 +669,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PUZZLE_A
       objectReference: {fileID: 0}
-    - target: {fileID: 2578727681802794251, guid: ae1f84f3e5dc22c4cba9c20180e079b4, type: 3}
-      propertyPath: m_text
-      value: text
-      objectReference: {fileID: 0}
-    - target: {fileID: 2578727681802794251, guid: ae1f84f3e5dc22c4cba9c20180e079b4, type: 3}
-      propertyPath: m_fontSize
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2578727681802794251, guid: ae1f84f3e5dc22c4cba9c20180e079b4, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 2a3fc1316ae28544c8c17624453711f0, type: 2}
-    - target: {fileID: 2578727681802794251, guid: ae1f84f3e5dc22c4cba9c20180e079b4, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2578727681802794251, guid: ae1f84f3e5dc22c4cba9c20180e079b4, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -5245390168022551989, guid: 2a3fc1316ae28544c8c17624453711f0, type: 2}
-    - target: {fileID: 2578727681802794251, guid: ae1f84f3e5dc22c4cba9c20180e079b4, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
