@@ -10,8 +10,9 @@ public class MonsterBase : MonoBehaviour, IAttackable
     
     [field: SerializeField] public float MoveSpeed { get; private set; }
 
-    private Patrol _Patrol;
-    private Chase _Chase;
+    private Patrol _patrol;
+    private Chase _chase;
+    private Attack _attack;
     
     // [SerializeField] private Animator _animator;
 
@@ -24,10 +25,13 @@ public class MonsterBase : MonoBehaviour, IAttackable
     
     // --------------------
 
+    public GameObject Gameobject { get => gameObject; }
+
     private void CacheComponents()
     {
-        _Patrol = GetComponent<Patrol>();
-        _Chase = GetComponent<Chase>();
+        _patrol = GetComponent<Patrol>();
+        _chase = GetComponent<Chase>();
+        
     }
 
     private void Init()
@@ -48,6 +52,11 @@ public class MonsterBase : MonoBehaviour, IAttackable
     public void ChangePatrolPattern()
     {
         _currentPattern = GetComponent<Patrol>();
-        _Patrol.CalculateStartPosition();
+        _patrol.CalculateStartPosition();
+    }
+
+    public void ChangeAttackPattern()
+    {
+        _currentPattern = GetComponent<Attack>();
     }
 }
