@@ -8,10 +8,11 @@ public class Patrol : Pattern
     [SerializeField] private List<WayPoint> _wayPoints;
 
     private MonsterBase _monsterBase;
-    private int _currentWayPoint = 0;
+    private Vector3 _nextPosition;
+    private int _currentWayPointIndex = 0;
     private float _moveSpeed;
     private float _distance = float.MaxValue;
-    private Vector3 _startPosition;
+    private bool _isReverseCycle = false;
     
     // --------------------
 
@@ -22,6 +23,10 @@ public class Patrol : Pattern
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
+        for (int i = 0; i < _wayPoints.Count - 1; i++)
+        {
+            Gizmos.DrawLine(_wayPoints[i].transform.position, _wayPoints[i + 1].transform.position);
+        }
     }
 
     // --------------------
@@ -39,11 +44,13 @@ public class Patrol : Pattern
     
     public override void OnAction()
     {
-        if (Vector3.Distance(transform.position, _startPosition) > 0.1f)
+        if (Vector3.Distance(transform.position, _nextPosition) > 0.2f)
         {
-            CalculateStartPosition();
-            
-            MoveToStartPosition();
+            MoveToPosition();
+        }
+        else
+        {
+            CalculateNextPosition();
         }
     }
     
@@ -60,22 +67,53 @@ public class Patrol : Pattern
             if (calculateDistance < _distance)
             {
                 _distance = calculateDistance;
-                _startPosition = _wayPoints[i].transform.position;
+                _currentWayPointIndex = i;
+                _nextPosition = _wayPoints[_currentWayPointIndex].transform.position;
             }
         }
-        Debug.Log(_startPosition);
+    }
+
+    private void CalculateNextPosition()
+    {
+        if (!_isReverseCycle) // 정방향 순회
+        {
+            if (_currentWayPointIndex < _wayPoints.Count -1)
+            {
+                _currentWayPointIndex++;
+                _nextPosition = _wayPoints[_currentWayPointIndex].transform.position;
+            }
+            else // 현재 위치가 인덱스 맨 끝
+            {
+                _currentWayPointIndex--;
+                _nextPosition = _wayPoints[_currentWayPointIndex].transform.position;
+                _isReverseCycle = true;
+            }
+        }
+        else // 역방향 순회
+        {
+            if (_currentWayPointIndex > 0)
+            {
+                _currentWayPointIndex--;
+                _nextPosition = _wayPoints[_currentWayPointIndex].transform.position;
+            }
+            else
+            {
+                _currentWayPointIndex++;
+                _nextPosition = _wayPoints[_currentWayPointIndex].transform.position;
+                _isReverseCycle = false;
+            }
+        }
+        
     }
 
     /// <summary>
     /// 가장 가까운 웨이포인트로 이동하는 함수
     /// </summary>
-    private void MoveToStartPosition()
+    private void MoveToPosition()
     {
         transform.position = Vector3.MoveTowards(
             transform.position,
-            _startPosition,
+            _nextPosition,
             _moveSpeed * Time.deltaTime);
     }
-    
-    //private void 
 }
