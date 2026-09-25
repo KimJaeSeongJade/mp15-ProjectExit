@@ -64,7 +64,7 @@ public class PuzzleA_Manager : MonoBehaviour
       yield return new WaitForSeconds(1.5f);
       _textInfo.text = "=RAINBOW=";
    }
-
+   
 
    public void ResetPlatforms()
    {
