@@ -27,9 +27,19 @@ public class Platform : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player")&& !_manager._Rot)
         {
-            OnColor();
+            OnPlatform();
+        }
+    }
+
+    public void OnPlatform()
+    {
+       OnColor();
+
+        if (!_manager._playerArray.Contains(this))
+        {
+            _manager.OnStepPlatform(this);
         }
     }
 
@@ -37,10 +47,6 @@ public class Platform : MonoBehaviour
     {
         _renderer.material = _platformColor;
 
-        if (!_manager._playerArray.Contains(this))
-        {
-            _manager.OnStepPlatform(this);
-        }
     }
 
     public void OffColor()
