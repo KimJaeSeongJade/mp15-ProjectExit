@@ -35,7 +35,6 @@ public class DetectPlatform : MonoBehaviour
     {
         DetectBlocks();
         CanClearPuzzle();
-        Debug.Log(CanClearPuzzle());
     }
 
     // 타일이 다 채워졌고, 밖으로 빠져나간게 없다면 클리어 조건을 채웁니다.
@@ -59,7 +58,6 @@ public class DetectPlatform : MonoBehaviour
             
             if (Physics.Raycast(ray, out hit, 1f, _blockLayer) && hit.transform != null)
             {
-                Debug.Log($"{_blocks[i].name} : 블록 감지");
                 triggerCount++;
             }
         }

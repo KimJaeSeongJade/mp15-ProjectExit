@@ -20,19 +20,23 @@ public class PuzzleBManager : MonoBehaviour
         {
             return;
         }
-
-        IsClear = true;
-        Debug.Log("Puzzle B Cleared");
+        else if (_detectPlatform.CanClearPuzzle())
+        {
+            IsClear = true;
+            Debug.Log("Puzzle B Cleared");
+        }
     }
 
     // bool 타입으로 반환하는 메서드 따로 빼놓았습니다.
     /*public bool JudgePuzzleCleared()
     {
-        if (!_detectPlatform.isClear)
+        if (_detectPlatform.CanClearPuzzle())
+        {
+            return true;
+        }
+        else
         {
             return false;
         }
-
-        return true;
     }*/
 }
