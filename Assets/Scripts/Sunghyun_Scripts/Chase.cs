@@ -8,9 +8,4 @@ public class Chase : Pattern
     {
         
     }
-
-    public override void OffAction()
-    {
-        
-    }
 }

@@ -8,9 +8,4 @@ public class Idle : Pattern
     {
         
     }
-
-    public override void OffAction()
-    {
-        
-    }
 }

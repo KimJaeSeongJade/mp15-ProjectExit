@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Patrol : Pattern
 {
-    [SerializeField] private List<Vector3> _wayPoints;
+    [SerializeField] private List<WayPoint> _wayPoints;
 
     private MonsterBase _monsterBase;
     private int _currentWayPoint = 0;
@@ -12,13 +13,16 @@ public class Patrol : Pattern
     private float _distance = float.MaxValue;
     private Vector3 _startPosition;
     
-
-    
     // --------------------
 
     private void Awake() => CacheComponents();
 
     private void Start() => Init();
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+    }
 
     // --------------------
 
@@ -30,19 +34,17 @@ public class Patrol : Pattern
     private void Init()
     {
         _moveSpeed = _monsterBase.MoveSpeed;
+        CalculateStartPosition();
     }
     
     public override void OnAction()
     {
-        CalculateStartPosition();
-
-        MoveToStartPosition();
-        
-    }
-
-    public override void OffAction()
-    {
-        
+        if (Vector3.Distance(transform.position, _startPosition) > 0.1f)
+        {
+            CalculateStartPosition();
+            
+            MoveToStartPosition();
+        }
     }
     
     /// <summary>
@@ -53,14 +55,15 @@ public class Patrol : Pattern
         for (int i = 0; i < _wayPoints.Count; i++)
         {
             float calculateDistance = 
-                Vector3.Distance(transform.position, _wayPoints[i]);
+                Vector3.Distance(transform.position, _wayPoints[i].transform.position);
 
             if (calculateDistance < _distance)
             {
                 _distance = calculateDistance;
-                _startPosition = _wayPoints[i];
+                _startPosition = _wayPoints[i].transform.position;
             }
         }
+        Debug.Log(_startPosition);
     }
 
     /// <summary>
@@ -68,6 +71,11 @@ public class Patrol : Pattern
     /// </summary>
     private void MoveToStartPosition()
     {
-        
+        transform.position = Vector3.MoveTowards(
+            transform.position,
+            _startPosition,
+            _moveSpeed * Time.deltaTime);
     }
+    
+    //private void 
 }

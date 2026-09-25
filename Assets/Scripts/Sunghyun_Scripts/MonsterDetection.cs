@@ -63,6 +63,7 @@ public class MonsterDetection : MonoBehaviour
     private void Update()
     {
         Debug.Log(_moveSpeed);
+        _monsterBase.DoAction();
         DetectingPlayer();
     }
     
@@ -71,6 +72,7 @@ public class MonsterDetection : MonoBehaviour
     private void CacheComponents()
     {
         _collider = GetComponent<SphereCollider>();
+        _monsterBase = GetComponentInParent<MonsterBase>();
         _monsterPostion = transform.parent;
     }
 

@@ -8,9 +8,4 @@ public class Attack : Pattern
     {
         
     }
-
-    public override void OffAction()
-    {
-        
-    }
 }
