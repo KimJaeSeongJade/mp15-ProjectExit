@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class MonsterBase : MonoBehaviour, IAttackable
 {
-    [SerializeField] private int _attackDamage;
     [SerializeField] private Pattern _currentPattern;
     
+    [field: SerializeField] public int AttackDamage { get; private set; }
     [field: SerializeField] public float MoveSpeed { get; private set; }
 
     private Patrol _patrol;

@@ -4,33 +4,81 @@ using UnityEngine;
 
 public class Attack : Pattern
 {
-    private int _attackDamage;
+    [SerializeField] private LayerMask _layerMask;
+    [SerializeField] private float _attackCooldown;
+    [SerializeField] private float _delayTime;
+    [SerializeField] private float _RaycastRange;
+    [SerializeField] private float _offsetYPosition;
+    
+    
     private Animator _animator;
+    private MonsterBase _monsterBase;
+    private Coroutine _attackRoutine;
+    private WaitForSeconds _waitForSeconds;
+    private Vector3 _monsterRayPoint;
+    private int _attackDamage;
+    private bool _isCoolingDown;
     
     public bool IsAttacked;
     
     // --------------------
 
     private void Awake() => CacheComponents();
+
+    private void Start() => Init();
         
     // --------------------
 
     private void CacheComponents()
     {
         _animator = GetComponent<Animator>();
+        _monsterBase = GetComponent<MonsterBase>();
+    }
+
+    private void Init()
+    {
+        _attackDamage = _monsterBase.AttackDamage;
+        _waitForSeconds = new WaitForSeconds(_delayTime);
     }
     
     public override void OnAction()
     {
-        if (!IsAttacked) // 아직 공격안했으면
+        if (!IsAttacked && !_isCoolingDown) // 아직 공격안했으면
         {
-            // 애니메이션 출력
-            // _animator.SetBool();
-            
-            // 일정시간 후에(애니메이션 동작 중간쯤 ) 레이캐스트 쏘고
-            // 레이캐스트 맞았으면 
-            // 맞은애 IDamageable 가져오고
-            // IDamageable 통해서 TakeDamage(attackDamage 만큼)
+            IsAttacked = true;
+            StartCoroutine(AttackRoutine());
         }
+    }
+
+    private IEnumerator AttackRoutine()
+    {
+        // 애니메이션
+        //_animator.SetBool();
+
+        yield return _waitForSeconds; // 애니메이션 중간정도 시간
+
+        ShootRay(); // Raycast 쏘고
+
+        IsAttacked = false;
+    }
+
+    private void ShootRay()
+    {
+        _monsterRayPoint = new Vector3(
+            transform.position.x,
+            transform.position.y + _offsetYPosition,
+            transform.position.z
+        );
+        
+        Ray ray = new Ray(_monsterRayPoint, transform.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, _RaycastRange, _layerMask))
+        {
+            IDamageable damageable = hit.transform.GetComponent<IDamageable>();
+            
+            damageable.TakeDamage(_attackDamage);
+        }
+
     }
 }
