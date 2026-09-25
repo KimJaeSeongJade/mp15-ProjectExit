@@ -53,7 +53,6 @@ public class PuzzleA_Manager : MonoBehaviour
          {
             _textInfo.text = "CLEAR!";
             p.FixOnColor();
-            // p.Clear();
          }
 
          IsClear = true;
