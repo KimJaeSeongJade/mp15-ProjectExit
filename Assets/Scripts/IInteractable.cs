@@ -4,5 +4,8 @@ using UnityEngine;
 
 public interface IInteractable
 {
-    // 플레이어와 아이템을 상호작용 할 수 있는
+    public GameObject GmObject { get; }
+
+    // 상호 작용을 당할 때 누군지 알아야 한다.
+    public void Interact(IInteractor owner);
 }

@@ -7,6 +7,8 @@ public class PuzzleCManager : MonoBehaviour
     
     [SerializeField] private List<GoalPoint> _goalPoints = new();
     [SerializeField] private GameObject _clearUI;
+    
+    public bool IsClear = false;
 
     private void Awake()
     {
@@ -51,5 +53,6 @@ public class PuzzleCManager : MonoBehaviour
 
         if (_clearUI != null)
             _clearUI.SetActive(true);
+        IsClear = true;
     }
 }
