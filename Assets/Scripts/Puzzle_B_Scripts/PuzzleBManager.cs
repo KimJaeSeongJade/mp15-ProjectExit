@@ -6,11 +6,6 @@ public class PuzzleBManager : MonoBehaviour
 {
     [SerializeField] private DetectPlatform _detectPlatform; // 타일을 참조
 
-    private void Awake()
-    {
-        _detectPlatform = GetComponent<DetectPlatform>();
-    }
-
     private void Update()
     {
         JudgePuzzleCleared();
