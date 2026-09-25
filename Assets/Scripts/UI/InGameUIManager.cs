@@ -154,6 +154,7 @@ public class InGameUIManager : MonoBehaviour
     private void LateUpdate()
     {
         OnGamePause();
+        OnGameClear();
     }
     
     // + Clear 관련
@@ -164,6 +165,14 @@ public class InGameUIManager : MonoBehaviour
 
     private void OnGameClear()
     {
+        if(!_isPressedClearKey)
+            return;
         
+        _clearUI.SetActive(true);
+        
+        if (_bgm != null)
+        {
+            _bgm.Pause();
+        }
     }
 }
