@@ -22,6 +22,7 @@ public class MonsterDetection : MonoBehaviour
     private bool IsTargeting;
     private float _moveSpeed;
     private MonsterBase _monsterBase;
+    private MonsterState _monsterState;
     
     private bool IsInPlayerLayer(GameObject target)
     {

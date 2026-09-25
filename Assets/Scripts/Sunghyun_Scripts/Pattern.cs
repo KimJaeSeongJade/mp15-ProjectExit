@@ -5,4 +5,6 @@ using UnityEngine;
 public abstract class Pattern : MonoBehaviour
 {
     public abstract void OnAction();
+
+    public abstract void OffAction();
 }
