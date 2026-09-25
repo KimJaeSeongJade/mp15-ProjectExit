@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainGameSceneController : MonoBehaviour
+public class SeunghunSceneController : MonoBehaviour
 {
     [SerializeField] private KeyCode _pauseKey = KeyCode.Q;
 
