@@ -61,7 +61,7 @@ public class PuzzleA_Manager : MonoBehaviour
 
    private IEnumerator Text()
    {
-      yield return new WaitForSeconds(2f);
+      yield return new WaitForSeconds(1.5f);
       _textInfo.text = "=RAINBOW=";
    }
 
