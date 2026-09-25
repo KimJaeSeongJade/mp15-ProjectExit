@@ -33,7 +33,7 @@ public class ShMissionInfo : MonoBehaviour
     private void CountPlayTime() // 60초가 넘어가면 1분으로 바꿔줍니다.
     {
         _playTimeSecond += Time.deltaTime;
-        if (_playTimeSecond >= 60f)
+        if (_playTimeSecond >= 59f)
         {
             _playTimeSecond = 0f;
             _playTimeMinute++;
@@ -42,9 +42,9 @@ public class ShMissionInfo : MonoBehaviour
 
     private void UpdatePlayTimeText() // 플레이타임 문구 갱신하는 메서드입니다.
     {
-        if (_playTimeMinute < 10)
+        if (_playTimeMinute <= 9)
         {
-            if (_playTimeSecond < 10f)
+            if (_playTimeSecond <= 9f)
             {
                 _playTimeText.text = $"Play Time 0{_playTimeMinute} : 0{Convert.ToInt32(_playTimeSecond)}";
             }
@@ -56,7 +56,7 @@ public class ShMissionInfo : MonoBehaviour
         }
         else if (_playTimeMinute >= 10)
         {
-            if (_playTimeSecond < 10f)
+            if (_playTimeSecond <= 9f)
             {
                 _playTimeText.text = $"Play Time {_playTimeMinute} : 0{Convert.ToInt32(_playTimeSecond)}";
             }
