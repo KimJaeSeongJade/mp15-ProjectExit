@@ -308,6 +308,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[Canvas] Pause_Q'
       objectReference: {fileID: 0}
+    - target: {fileID: 8267458398971909176, guid: 5f0ed1b175eea614bb1ef1b5cff8fe48, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

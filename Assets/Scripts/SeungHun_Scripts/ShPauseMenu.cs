@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class PauseMenu : MonoBehaviour
+public class ShPauseMenu : MonoBehaviour
 {
     [SerializeField] private Button _exit; // 타이틀로 돌아가는 버튼
     [SerializeField] private Button _continue; // 패널을 닫는 버튼
