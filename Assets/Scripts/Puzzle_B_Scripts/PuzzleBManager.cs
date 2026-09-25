@@ -5,6 +5,7 @@ using UnityEngine;
 public class PuzzleBManager : MonoBehaviour
 {
     [SerializeField] private DetectPlatform _detectPlatform; // 타일을 참조
+    [SerializeField] private PuzzleBMessage _puzzleBMessage;
     
     public bool IsClear = false;
     
@@ -24,6 +25,7 @@ public class PuzzleBManager : MonoBehaviour
         {
             IsClear = true;
             Debug.Log("Puzzle B Cleared");
+            _puzzleBMessage.gameObject.SetActive(true);
         }
     }
 
@@ -33,6 +35,7 @@ public class PuzzleBManager : MonoBehaviour
         if (_detectPlatform.CanClearPuzzle())
         {
             return true;
+            _puzzleBMessage.gameObject.SetActive(true);
         }
         else
         {
