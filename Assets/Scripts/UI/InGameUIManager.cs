@@ -65,7 +65,15 @@ public class InGameUIManager : MonoBehaviour
     private void BeforePlaying() =>GameManager.Instance.PauseGame();
     private void PressToPlay() => GameManager.Instance.StartGame();
     private void OnClickContinue() => GameManager.Instance.ResumeGame();
-    private void OnClickExit() => GameManager.Instance.LoadScene("GameTitle");
+    private void OnClickExit()
+    {
+        GameManager.Instance.LoadScene("GameTitle");
+        
+        if (_bgm != null)
+        {
+            _bgm.Stop();
+        }
+    }
     
     private void OnGameStart()
     {
