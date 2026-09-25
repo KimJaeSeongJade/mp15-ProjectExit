@@ -18,28 +18,28 @@ public class GameManager : Singleton<GameManager>
     public void StartGame()
     {
         OnGameStart?.Invoke();
-        // Time.timeScale = 1;
+        Time.timeScale = 1;
         // 이후 필요한 로직 작성
     }
 
     public void PauseGame()
     {
         OnGamePause?.Invoke();
-        // Time.timeScale = 0;
+        Time.timeScale = 0;
         // 이후 필요한 로직 작성
     }
     
     public void ResumeGame()
     {
         OnGameResume?.Invoke();
-        // Time.timeScale = 1;
+        Time.timeScale = 1;
         // 이후 필요한 로직 작성
     }
 
     public void GameOver()
     {
         OnGameOver?.Invoke();
-        // Time.timeScale = 0;
+        Time.timeScale = 0;
         // 이후 필요한 로직 작성
     }
 

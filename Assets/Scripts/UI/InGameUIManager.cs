@@ -16,12 +16,34 @@ public class InGameUIManager : MonoBehaviour
 
 
     private void Awake() => Init();
-    private void OnEnable() => BindButtonEvents();
-    private void OnDisable() => UnbindButtonEvents();
+
+    private void OnEnable()
+    {
+        BindButtonEvents();
+        BindGameFlowEvents();
+    }
+
+    private void OnDisable()
+    {
+        UnbindButtonEvents();
+        UnbindGameFlowEvents();
+    }
 
     private void BindButtonEvents()
     {
         _howToPlayUIStartButton.onClick.AddListener(PressToPlay);
+    }
+
+    private void BindGameFlowEvents()
+    {
+        GameManager.Instance.OnGameStart += OnGameStart;
+        
+    }
+
+    private void UnbindGameFlowEvents()
+    {
+        GameManager.Instance.OnGameStart -= OnGameStart;
+        
     }
 
     private void UnbindButtonEvents()
@@ -29,13 +51,15 @@ public class InGameUIManager : MonoBehaviour
         _howToPlayUIStartButton.onClick.RemoveListener(PressToPlay);
     }
 
-    private void PressToPlay()
+    private void PressToPlay() => GameManager.Instance.StartGame();
+    
+
+    private void OnGameStart()
     {
         _howToPlayUI.SetActive(false);
-        Time.timeScale = 1f;
         _inGameUI.SetActive(true);
     }
-    
+
     private void Init()
     {
         _howToPlayUI.SetActive(true);
