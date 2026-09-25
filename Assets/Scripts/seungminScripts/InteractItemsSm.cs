@@ -1,16 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
+using System;
 
-public class InteractItems : MonoBehaviour, IJyInteractable
+public class InteractItemsSm : MonoBehaviour, IInteractable
 {
-    public GameObject GmObject { get => gameObject; }
-    private JyPlayerController _playerController;
+    public GameObject GameObject { get => gameObject; }
+    private PlayerControllerSm _playerController;
     
     private Transform _getGrapPoint;
-    [SerializeField] private GoalPoint _goalPoint;
+    [SerializeField] private GoalPointSm _goalPoint;
     
     private void Awake() => Init();
     
@@ -25,12 +24,12 @@ public class InteractItems : MonoBehaviour, IJyInteractable
             _goalPoint.OnClearStateChanged -= HandleClearStateChanged;
     }
     
-    public void Interact(IJyInteractor owner)
+    public void Interact(IInteractor owner)
     {
-        if (!(owner is JyPlayerController))
+        if (!(owner is PlayerControllerSm))
             return;
 
-        _playerController = (JyPlayerController)owner;
+        _playerController = (PlayerControllerSm)owner;
 
         _getGrapPoint = _playerController.GrapPoint;
         
@@ -44,13 +43,17 @@ public class InteractItems : MonoBehaviour, IJyInteractable
         if (_playerController == null) 
             return;
         
-        transform.Translate(_playerController.GetPlayerRigidbody.velocity * Time.deltaTime, Space.World);
+        transform.position = _getGrapPoint.position;
+        transform.rotation = _getGrapPoint.rotation;
+        
+        // 이동하지 말고 grabPoint 그대로 따라가도록 처리.
+        // transform.Translate(_playerController.GetPlayerRigidbody.velocity * Time.deltaTime, Space.World);
     }
 
     private void Init()
     {
         if (_goalPoint == null)
-            _goalPoint = FindObjectOfType<GoalPoint>(); // 씬에 하나뿐이라면
+            _goalPoint = FindObjectOfType<GoalPointSm>(); // 씬에 하나뿐이라면
 
         if (_goalPoint != null)
             _goalPoint.OnClearStateChanged += HandleClearStateChanged;
