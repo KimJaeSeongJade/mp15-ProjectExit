@@ -122,6 +122,16 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &205387474 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3363535572010116204, guid: 34234b52538f7d946a52617d6d7aef7f, type: 3}
+  m_PrefabInstance: {fileID: 838772238381867560}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &295120232 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7647665842477324865, guid: 1d6e66616597b8940a73a427f63b3a02, type: 3}
+  m_PrefabInstance: {fileID: 999482975939354910}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &362010892
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,6 +294,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &847600172 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8267458398971909176, guid: 5f0ed1b175eea614bb1ef1b5cff8fe48, type: 3}
+  m_PrefabInstance: {fileID: 2230013659649576563}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &886762331
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,6 +420,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 792c5a3b218df394ca97a4e3162459ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _howToPlayUI: {fileID: 1201455285}
+  _pauseQUI: {fileID: 847600172}
+  _clearUI: {fileID: 295120232}
+  _deadUI: {fileID: 2146410068}
+  _inGameUI: {fileID: 205387474}
+  _howToPlayUIStartButton: {fileID: 2023797550}
 --- !u!4 &1085287199
 Transform:
   m_ObjectHideFlags: 0
@@ -420,6 +441,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1201455285 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3127734002781982732, guid: 733c6fa19235660409149e814f4e9b1a, type: 3}
+  m_PrefabInstance: {fileID: 1770694019718551810}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2023797550 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3849424134802790869, guid: 733c6fa19235660409149e814f4e9b1a, type: 3}
+  m_PrefabInstance: {fileID: 1770694019718551810}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &2146410068 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4677184233109420367, guid: 1689e9f15082df246a5dbb1fdcdb672a, type: 3}
+  m_PrefabInstance: {fileID: 4142989089855486230}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &838772238381867560
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -705,6 +747,10 @@ PrefabInstance:
     - target: {fileID: 3127734002781982732, guid: 733c6fa19235660409149e814f4e9b1a, type: 3}
       propertyPath: m_Name
       value: '[Canvas] HowToPlay'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3127734002781982732, guid: 733c6fa19235660409149e814f4e9b1a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
