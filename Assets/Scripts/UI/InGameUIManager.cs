@@ -35,7 +35,7 @@ public class InGameUIManager : MonoBehaviour
     private void BindButtonEvents()
     {
         _howToPlayUIStartButton.onClick.AddListener(PressToPlay);
-        _pauseQUIContinueButton.onClick.AddListener(OnGamePause);
+        _pauseQUIContinueButton.onClick.AddListener(OnClickContinue);
         _pauseQUIExitButton.onClick.AddListener(OnGamePause);
     }
 
@@ -43,6 +43,7 @@ public class InGameUIManager : MonoBehaviour
     {
         GameManager.Instance.OnGameStart += OnGameStart;
         GameManager.Instance.OnGamePause += OnGamePause;
+        GameManager.Instance.OnGameResume += OnGameResume;
 
     }
 
@@ -50,17 +51,19 @@ public class InGameUIManager : MonoBehaviour
     {
         GameManager.Instance.OnGameStart -= OnGameStart;
         GameManager.Instance.OnGamePause -= OnGamePause;
+        GameManager.Instance.OnGameResume -= OnGameResume;
     }
 
     private void UnbindButtonEvents()
     {
         _howToPlayUIStartButton.onClick.RemoveListener(PressToPlay);
-        _pauseQUIContinueButton.onClick.RemoveListener(OnGamePause);
+        _pauseQUIContinueButton.onClick.RemoveListener(OnClickContinue);
         _pauseQUIExitButton.onClick.RemoveListener(OnGamePause);
     }
 
     private void BeforePlaying() =>GameManager.Instance.PauseGame();
     private void PressToPlay() => GameManager.Instance.StartGame();
+    private void OnClickContinue() => GameManager.Instance.ResumeGame();
     
     private void OnGameStart()
     {
@@ -131,9 +134,9 @@ public class InGameUIManager : MonoBehaviour
         }
     }
     
-    // + 
+    // + InGamePause 관련
     [SerializeField] private KeyCode _pauseKey = KeyCode.Q;
-    private bool _isPressedPauseKey=>Input.GetKeyDown(_pauseKey);
+    private bool _isPressedPauseKey => Input.GetKeyDown(_pauseKey);
     
     [SerializeField] private Button _pauseQUIExitButton;
     [SerializeField] private Button _pauseQUIContinueButton;
