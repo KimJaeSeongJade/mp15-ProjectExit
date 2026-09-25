@@ -14,7 +14,6 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] private GameObject _inGameUI;
     [SerializeField] private Button _howToPlayUIStartButton;
 
-
     private void Awake() => Init();
 
     private void OnEnable()
@@ -36,14 +35,15 @@ public class InGameUIManager : MonoBehaviour
 
     private void BindGameFlowEvents()
     {
+        GameManager.Instance.OnGamePause += Init;
         GameManager.Instance.OnGameStart += OnGameStart;
-        
+
     }
 
     private void UnbindGameFlowEvents()
     {
+        GameManager.Instance.OnGamePause -= Init;
         GameManager.Instance.OnGameStart -= OnGameStart;
-        
     }
 
     private void UnbindButtonEvents()
@@ -51,8 +51,8 @@ public class InGameUIManager : MonoBehaviour
         _howToPlayUIStartButton.onClick.RemoveListener(PressToPlay);
     }
 
+    private void BeforePlaying() =>GameManager.Instance.PauseGame();
     private void PressToPlay() => GameManager.Instance.StartGame();
-    
 
     private void OnGameStart()
     {
@@ -68,7 +68,6 @@ public class InGameUIManager : MonoBehaviour
         _clearUI.SetActive(false);
         _deadUI.SetActive(false);
         _inGameUI.SetActive(false);
-        
-        Time.timeScale = 0f;
+        BeforePlaying();
     }
 }
