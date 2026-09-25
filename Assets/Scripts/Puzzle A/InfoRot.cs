@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,11 @@ public class InfoRot : MonoBehaviour
 
     private Transform _cam;
 
-    private void Awake() => Get();
+    private void Start()
+    {
+        Get();
+    }
+
     void Update()
     {
         Rot();
@@ -22,4 +27,16 @@ public class InfoRot : MonoBehaviour
     {
         transform.forward = _cam.forward;
     }
+    
+    /*[SerializeField] private Transform _target;
+
+    private void Update()
+    {
+        LookatTarget();
+    }
+
+    private void LookatTarget()
+    {
+        transform.LookAt(_target);
+    }*/
 }
