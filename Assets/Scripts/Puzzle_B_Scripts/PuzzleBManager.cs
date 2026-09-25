@@ -4,15 +4,37 @@ using UnityEngine;
 
 public class PuzzleBManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private DetectPlatform _detectPlatform; // 타일을 참조
+
+    private void Awake()
     {
-        
+        _detectPlatform = GetComponent<DetectPlatform>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        JudgePuzzleCleared();
     }
+    
+    // 반환형이 없는 메서드입니다.
+    private void JudgePuzzleCleared()
+    {
+        if (!_detectPlatform.CanClearPuzzle())
+        {
+            return; 
+            
+        }
+        Debug.Log("Puzzle B Cleared");
+    }
+
+    // bool 타입으로 반환하는 메서드 따로 빼놓았습니다.
+    /*public bool JudgePuzzleCleared()
+    {
+        if (!_detectPlatform.isClear)
+        {
+            return false;
+        }
+
+        return true;
+    }*/
 }

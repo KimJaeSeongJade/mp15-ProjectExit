@@ -12,19 +12,8 @@ public class DetectPlatform : MonoBehaviour
     {
         get { return triggerCount == 9; }
     }
-
-    public bool isClear { get; private set; } // 클리어 했는가
-    public int triggerCount; // 채워진 타일 칸 수
     
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            TileTrigger();
-        }
-
-        IsClear();
-    }
+    public int triggerCount; // 채워진 타일 칸 수
 
     private void OnTriggerEnter(Collider other)
     {
@@ -42,20 +31,25 @@ public class DetectPlatform : MonoBehaviour
         }
     }
 
-    private void IsClear()
+    private void Update()
     {
-        if (!isTileFull || isTouchOutside)
+        DetectBlocks();
+        CanClearPuzzle();
+        Debug.Log(CanClearPuzzle());
+    }
+
+    // 타일이 다 채워졌고, 밖으로 빠져나간게 없다면 클리어 조건을 채웁니다.
+    public bool CanClearPuzzle()
+    {
+        if (isTileFull && !isTouchOutside)
         {
-            return;
+            return true;
         }
-        else if (isTileFull && !isTouchOutside)
-        {
-            isClear = true;
-            Debug.Log("IsClear : 클리어!");
-        }
+        return false;
     }
     
-    private void TileTrigger()
+    // 자식 블록들이 Raycast로 블록을 감지, 총 갯수를 셉니다
+    private void DetectBlocks()
     {
         triggerCount = 0;
         for (int i = 0; i < _blocks.Length; i++)
@@ -67,9 +61,7 @@ public class DetectPlatform : MonoBehaviour
             {
                 Debug.Log($"{_blocks[i].name} : 블록 감지");
                 triggerCount++;
-                
             }
         }
-        Debug.Log($"현재 채워진 타일 : {triggerCount}칸");
     }
 }
