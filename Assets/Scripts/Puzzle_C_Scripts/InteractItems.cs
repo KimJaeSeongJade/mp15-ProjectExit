@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
-public class InteractItems : MonoBehaviour, IJyInteractable
+public class InteractItems : MonoBehaviour, IInteractable
 {
     public GameObject GmObject { get => gameObject; }
-    private JyPlayerController _playerController;
+    private PlayerControllerSm _playerController;
     
     private Transform _getGrapPoint;
     [SerializeField] private GoalPoint _goalPoint;
@@ -25,12 +25,12 @@ public class InteractItems : MonoBehaviour, IJyInteractable
             _goalPoint.OnClearStateChanged -= HandleClearStateChanged;
     }
     
-    public void Interact(IJyInteractor owner)
+    public void Interact(IInteractor owner)
     {
-        if (!(owner is JyPlayerController))
+        if (!(owner is PlayerControllerSm))
             return;
 
-        _playerController = (JyPlayerController)owner;
+        _playerController = (PlayerControllerSm)owner;
 
         _getGrapPoint = _playerController.GrapPoint;
         

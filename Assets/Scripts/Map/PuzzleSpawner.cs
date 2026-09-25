@@ -9,7 +9,6 @@ public class SpawnerPoint : MonoBehaviour
     [SerializeField] private Transform _puzzleASpawnPoint;
     [SerializeField] private Transform _puzzleBSpawnPoint;
     [SerializeField] private Transform _puzzleCSpawnPoint;
-    [SerializeField] private Transform _exitSpawnPoint;
 
     [SerializeField] private GameObject _player;
     // [SerializeField] private GameObject _monster;

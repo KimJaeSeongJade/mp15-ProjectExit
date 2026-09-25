@@ -13,7 +13,7 @@ public class PuzzleA_Manager : MonoBehaviour
    
    public List<Platform> _playerArray = new(6);
 
-   private bool IsClear;
+   public bool IsClear = false;
    private int clearCount;
    
    private void Awake()

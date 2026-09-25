@@ -2,18 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControllerSm : MonoBehaviour, IDamageable
+public class PlayerControllerSm : MonoBehaviour, IDamageable, IInteractor
 {
     private PlayerMovement _movement;
     private PlayerStat _stat;
-
-    private IInteractable _targetIneractable;
+    [SerializeField] private Transform _muzzlePoint;
+    [field: SerializeField] public Transform GrapPoint;
+    
+    private float _rayDistance = 2f;
+    
+    private IInteractable _item;
+    private IInteractor _targetIneractable;
+    
+    public GameObject GameObject {get => gameObject;}
+    
     public bool _isDead => _stat.PlayerHealth <= 0;
+    public Rigidbody GetPlayerRigidbody => _movement._rigidbody;
     
     private void Awake() => CacheComponents();
     private void FixedUpdate() => _movement.Move();
     private void Update()
     {
+        DetectItem();
+        GetInteract();
         _movement.Rotate();
     }
 
@@ -27,6 +38,40 @@ public class PlayerControllerSm : MonoBehaviour, IDamageable
     public void Die()
     {
         // 게임오버 씬
+    }
+    
+    public void TryInteract()
+    {
+        if (_item != null)
+        {
+            _item.Interact(this);
+            Debug.Log($"TryInteract: {name} interacted with {_item}");
+        }
+    }
+    
+    private void DetectItem()
+    {
+        Ray ray = new Ray(_muzzlePoint.position, _muzzlePoint.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, _rayDistance))
+        {
+            Debug.DrawRay(ray.origin, ray.direction * _rayDistance, Color.red);
+            _item = hit.collider.GetComponent<IInteractable>();
+            Debug.Log($"DetectItem: {name} interacted with {_item}");
+        }
+        else
+        {
+            _item = null;
+        }
+    }
+    
+    private void GetInteract()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            TryInteract();
+        }
     }
     
     private void CacheComponents()

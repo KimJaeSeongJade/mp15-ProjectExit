@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float _pitch;
 
-    private Rigidbody _rigidbody;
+    public Rigidbody _rigidbody;
     private PlayerStat _playerStat;
     private PlayerController _controller;
     
