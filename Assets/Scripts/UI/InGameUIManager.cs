@@ -49,6 +49,9 @@ public class InGameUIManager : MonoBehaviour
 
     private void UnbindGameFlowEvents()
     {
+        if (GameManager.Instance == null)
+            return;
+        
         GameManager.Instance.OnGameStart -= OnGameStart;
         GameManager.Instance.OnGamePause -= OnGamePause;
         GameManager.Instance.OnGameResume -= OnGameResume;
@@ -56,6 +59,9 @@ public class InGameUIManager : MonoBehaviour
 
     private void UnbindButtonEvents()
     {
+        if (GameManager.Instance == null)
+            return;
+        
         _howToPlayUIStartButton.onClick.RemoveListener(PressToPlay);
         _pauseQUIExitButton.onClick.RemoveListener(OnGamePause);
         _pauseQUIContinueButton.onClick.RemoveListener(OnClickPauseUIContinue);
