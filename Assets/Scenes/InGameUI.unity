@@ -542,6 +542,9 @@ MonoBehaviour:
   _howToPlayUIStartButton: {fileID: 2023797550}
   _gripUI: {fileID: 1944771302}
   _bgmAudioClip: {fileID: 8300000, guid: b41caff192f42c64ab7a822531263bcd, type: 3}
+  _pauseKey: 113
+  _pauseQUIExitButton: {fileID: 2230013659649576565}
+  _pauseQUIContinueButton: {fileID: 2230013659649576564}
 --- !u!4 &1085287199
 Transform:
   m_ObjectHideFlags: 0
@@ -1263,6 +1266,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f0ed1b175eea614bb1ef1b5cff8fe48, type: 3}
+--- !u!114 &2230013659649576564 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8422861131935564916, guid: 5f0ed1b175eea614bb1ef1b5cff8fe48, type: 3}
+  m_PrefabInstance: {fileID: 2230013659649576563}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2230013659649576565 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1623076427337771310, guid: 5f0ed1b175eea614bb1ef1b5cff8fe48, type: 3}
+  m_PrefabInstance: {fileID: 2230013659649576563}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4142989089855486230
 PrefabInstance:
   m_ObjectHideFlags: 0
