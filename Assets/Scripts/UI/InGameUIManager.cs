@@ -36,8 +36,8 @@ public class InGameUIManager : MonoBehaviour
     {
         _howToPlayUIStartButton.onClick.AddListener(PressToPlay);
         _pauseQUIExitButton.onClick.AddListener(OnGamePause);
-        _pauseQUIContinueButton.onClick.AddListener(OnClickContinue);
-        _pauseQUIExitButton.onClick.AddListener(OnClickExit);
+        _pauseQUIContinueButton.onClick.AddListener(OnClickPauseUIContinue);
+        _pauseQUIExitButton.onClick.AddListener(OnClickPauseUIExit);
     }
 
     private void BindGameFlowEvents()
@@ -58,14 +58,14 @@ public class InGameUIManager : MonoBehaviour
     {
         _howToPlayUIStartButton.onClick.RemoveListener(PressToPlay);
         _pauseQUIExitButton.onClick.RemoveListener(OnGamePause);
-        _pauseQUIContinueButton.onClick.RemoveListener(OnClickContinue);
-        _pauseQUIExitButton.onClick.RemoveListener(OnClickExit);
+        _pauseQUIContinueButton.onClick.RemoveListener(OnClickPauseUIContinue);
+        _pauseQUIExitButton.onClick.RemoveListener(OnClickPauseUIExit);
     }
 
     private void BeforePlaying() =>GameManager.Instance.PauseGame();
     private void PressToPlay() => GameManager.Instance.StartGame();
-    private void OnClickContinue() => GameManager.Instance.ResumeGame();
-    private void OnClickExit()
+    private void OnClickPauseUIContinue() => GameManager.Instance.ResumeGame();
+    private void OnClickPauseUIExit()
     {
         GameManager.Instance.LoadScene("GameTitle");
         
@@ -107,7 +107,7 @@ public class InGameUIManager : MonoBehaviour
             _bgm.Play();
         }
     }
-
+    
     private void OnGameOver()
     {
         _deadUI.SetActive(true);
@@ -154,5 +154,16 @@ public class InGameUIManager : MonoBehaviour
     private void LateUpdate()
     {
         OnGamePause();
+    }
+    
+    // + Clear 관련
+    private KeyCode _clearKey = KeyCode.C; // 임시 설정
+    private bool _isPressedClearKey => Input.GetKeyDown(_clearKey);
+    [SerializeField] private Button _clearQUIAgainButton;
+    [SerializeField] private Button _clearQUIExitButton;
+
+    private void OnGameClear()
+    {
+        
     }
 }
