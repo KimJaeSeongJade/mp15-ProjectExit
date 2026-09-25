@@ -4,22 +4,18 @@ using UnityEngine;
 
 public class InfoRot : MonoBehaviour
 {
+    private Transform _cameraTransform;
 
-    private Transform _cam;
+    private void Awake() => CacheComponents();
+    private void LateUpdate() => Rotate();
 
-    private void Awake() => Get();
-    void Update()
+    private void CacheComponents()
     {
-        Rot();
+        _cameraTransform = Camera.main.transform;
     }
 
-    private void Get()
+    private void Rotate()
     {
-        _cam = Camera.main.transform;
-    }
-
-    private void Rot()
-    {
-        transform.forward = _cam.forward;
+        transform.forward = _cameraTransform.forward;
     }
 }
