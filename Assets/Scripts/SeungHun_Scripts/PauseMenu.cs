@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -23,15 +24,22 @@ public class PauseMenu : MonoBehaviour
     private void BindButtonEvents()
     {
         _continue.onClick.AddListener(HidePanel);
+        _exit.onClick.AddListener(GoToTitle);
     }
 
     private void UnBindButtonEvents()
     {
         _continue.onClick.RemoveListener(HidePanel);
+        _exit.onClick.RemoveListener(GoToTitle);
     }
 
     private void HidePanel()
     {
         gameObject.SetActive(false);
+    }
+
+    private void GoToTitle()
+    {
+        SceneManager.LoadScene("GameTitle");
     }
 }
