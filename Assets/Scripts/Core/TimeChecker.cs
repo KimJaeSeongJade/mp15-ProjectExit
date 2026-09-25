@@ -7,6 +7,8 @@ public class TimeChecker : MonoBehaviour
     private float _elapsedTime = 0f;
     private int _lastSecond = -1;
 
+    public int CurrentSecond { get; private set; }
+
     private void Start() => ResetTimer();
     private void Update() => UpdateTime();
 
@@ -14,11 +16,11 @@ public class TimeChecker : MonoBehaviour
     {
         _elapsedTime += Time.deltaTime;
 
-        int currentSecond = (int)_elapsedTime;
-        if (currentSecond == _lastSecond) return;
+        CurrentSecond = (int)_elapsedTime;
+        if (CurrentSecond == _lastSecond) return;
 
-        _lastSecond = currentSecond;
-        _timeCheckerUI.Refresh(currentSecond);
+        _lastSecond = CurrentSecond;
+        _timeCheckerUI.Refresh(CurrentSecond);
     }
 
     public void ResetTimer()
