@@ -41,6 +41,10 @@ public class InGameUIManager : MonoBehaviour
         
         _clearQUIExitButton.onClick.AddListener(OnClickUIExit);
         _clearQUIAgainButton.onClick.AddListener(OnClickRetryGame);
+        
+        _deadQUIExitButton.onClick.AddListener(OnClickUIExit);
+        _deadQUIAgainButton.onClick.AddListener(OnClickRetryGame);
+        
     }
 
     private void BindGameFlowEvents()
@@ -48,6 +52,7 @@ public class InGameUIManager : MonoBehaviour
         GameManager.Instance.OnGameStart += OnGameStart;
         GameManager.Instance.OnGamePause += OnGamePause;
         GameManager.Instance.OnGameResume += OnGameResume;
+        GameManager.Instance.OnGameOver += OnGameOver;
     }
 
     private void UnbindGameFlowEvents()
@@ -58,6 +63,7 @@ public class InGameUIManager : MonoBehaviour
         GameManager.Instance.OnGameStart -= OnGameStart;
         GameManager.Instance.OnGamePause -= OnGamePause;
         GameManager.Instance.OnGameResume -= OnGameResume;
+        GameManager.Instance.OnGameOver -= OnGameOver;
     }
 
     private void UnbindButtonEvents()
@@ -72,6 +78,10 @@ public class InGameUIManager : MonoBehaviour
         
         _clearQUIExitButton.onClick.RemoveListener(OnClickUIExit);
         _clearQUIAgainButton.onClick.RemoveListener(OnClickRetryGame);
+        
+        _deadQUIExitButton.onClick.RemoveListener(OnClickUIExit);
+        _deadQUIAgainButton.onClick.RemoveListener(OnClickRetryGame);
+        
     }
 
     private void BeforePlaying() =>GameManager.Instance.PauseGame();
@@ -122,6 +132,9 @@ public class InGameUIManager : MonoBehaviour
     
     private void OnGameOver()
     {
+        if(!_isPressedDeathKey)
+            return;
+        
         _deadUI.SetActive(true);
         
         if (_bgm != null)
@@ -167,6 +180,7 @@ public class InGameUIManager : MonoBehaviour
     {
         OnGamePause();
         OnGameClear();
+        OnGameOver();
     }
     
     // + Clear 관련
@@ -192,4 +206,11 @@ public class InGameUIManager : MonoBehaviour
     {
         GameManager.Instance.LoadScene("InGameUI");
     }
+    
+    // + Gameover 관련(Again, Exit)
+    private KeyCode _deathKey = KeyCode.V; // 임시 설정
+    private bool _isPressedDeathKey => Input.GetKeyDown(_deathKey);
+    [SerializeField] private Button _deadQUIAgainButton;
+    [SerializeField] private Button _deadQUIExitButton;
+    
 }
