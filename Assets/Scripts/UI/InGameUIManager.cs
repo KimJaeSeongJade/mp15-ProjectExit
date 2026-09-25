@@ -13,6 +13,7 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] private GameObject _deadUI;
     [SerializeField] private GameObject _inGameUI;
     [SerializeField] private Button _howToPlayUIStartButton;
+    [SerializeField] private GameObject _gripUI;
 
     [SerializeField] private AudioClip _bgmAudioClip;
     private AudioPlayer _bgm;
@@ -34,45 +35,41 @@ public class InGameUIManager : MonoBehaviour
     private void BindButtonEvents()
     {
         _howToPlayUIStartButton.onClick.AddListener(PressToPlay);
+        _pauseQUIContinueButton.onClick.AddListener(OnGamePause);
+        _pauseQUIExitButton.onClick.AddListener(OnGamePause);
     }
 
     private void BindGameFlowEvents()
     {
-        // GameManager.Instance.OnGamePause += Init;
         GameManager.Instance.OnGameStart += OnGameStart;
+        GameManager.Instance.OnGamePause += OnGamePause;
 
     }
 
     private void UnbindGameFlowEvents()
     {
-        // GameManager.Instance.OnGamePause -= Init;
         GameManager.Instance.OnGameStart -= OnGameStart;
+        GameManager.Instance.OnGamePause -= OnGamePause;
     }
 
     private void UnbindButtonEvents()
     {
         _howToPlayUIStartButton.onClick.RemoveListener(PressToPlay);
+        _pauseQUIContinueButton.onClick.RemoveListener(OnGamePause);
+        _pauseQUIExitButton.onClick.RemoveListener(OnGamePause);
     }
 
     private void BeforePlaying() =>GameManager.Instance.PauseGame();
     private void PressToPlay() => GameManager.Instance.StartGame();
-
+    
     private void OnGameStart()
     {
         _howToPlayUI.SetActive(false);
         _inGameUI.SetActive(true);
+        _gripUI.SetActive(false);
         _pauseQUI.SetActive(false);
 
-        if (_bgm == null)
-        {
-            _bgm = AudioManager.Instance.TakeAudioPlayer();
-            _bgm
-                .SetLoop(true)
-                .SetVolume(0.5f)
-                .SetAudioClip(_bgmAudioClip)
-                .PlayOnAwake(true)
-                .Play();
-        }
+        BgmInit();
     }
 
     private void OnGamePause()
@@ -87,6 +84,7 @@ public class InGameUIManager : MonoBehaviour
 
     private void OnGameResume()
     {
+        _pauseQUI.SetActive(false);
 
         if (_bgm != null)
         {
@@ -96,7 +94,8 @@ public class InGameUIManager : MonoBehaviour
 
     private void OnGameOver()
     {
-
+        _deadUI.SetActive(true);
+        
         if (_bgm != null)
         {
             _bgm.Stop();
@@ -111,6 +110,30 @@ public class InGameUIManager : MonoBehaviour
         _clearUI.SetActive(false);
         _deadUI.SetActive(false);
         _inGameUI.SetActive(false);
+        
         BeforePlaying();
     }
+
+    private void BgmInit()
+    {
+        if (_bgm == null)
+        {
+            _bgm = AudioManager.Instance.TakeAudioPlayer();
+            _bgm
+                .SetLoop(true)
+                .SetVolume(0.5f)
+                .SetAudioClip(_bgmAudioClip)
+                .PlayOnAwake(true)
+                .Play();
+        }
+    }
+    
+    // + 
+    [SerializeField] private KeyCode _pauseKey = KeyCode.Q;
+    private bool _isPressedPauseKey=>Input.GetKeyDown(_pauseKey);
+    
+    [SerializeField] private Button _pauseQUIExitButton;
+    [SerializeField] private Button _pauseQUIContinueButton;
+    
+    
 }
