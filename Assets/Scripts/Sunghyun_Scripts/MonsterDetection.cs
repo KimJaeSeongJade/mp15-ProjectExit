@@ -22,14 +22,22 @@ public class MonsterDetection : MonoBehaviour
     private bool IsTargeting;
     private float _moveSpeed;
     private MonsterBase _monsterBase;
-    private MonsterState _monsterState;
-    
+    private WaitForSeconds _waitForSeconds = new WaitForSeconds(2f);
+
+
+
+    public Transform _playerTransform { get; private set; }
+    private bool isDetectedTrigger => _playerTransform != null;
+    private bool isPlayerInsight;
+    public bool IsDetected => isDetectedTrigger && isPlayerInsight;
+
     private bool IsInPlayerLayer(GameObject target)
     {
         return (_layerMask.value & (1 << target.layer)) != 0;
     }
 
     // --------------------
+    
     private void Awake() => CacheComponents();
 
     private void Start()
@@ -79,7 +87,7 @@ public class MonsterDetection : MonoBehaviour
     private void Init()
     {
         _detectRange = _collider.radius;
-        //_moveSpeed = moveSpeed;
+        _moveSpeed = _monsterBase.MoveSpeed;
     }
 
     private void DetectingPlayer()
@@ -93,14 +101,17 @@ public class MonsterDetection : MonoBehaviour
             if (Vector3.Distance(_monsterPostion.position, _lastPostion) < 0.1f)
             {
                 _remainPosition = false;
+                StartCoroutine(IdleBeforePatrol());
             }
             return;
         }
         
         if(IsPlayerInDetectRange(_transformInTrigger) && IsRaycastReached(_transformInTrigger))
         {
-            IsTargeting = true;
+            StopCoroutine(IdleBeforePatrol());
             
+            IsTargeting = true;
+            _monsterBase.ChangeChasePattern();
             if (Vector3.Distance(_monsterPostion.position, _transformInTrigger.position) < 0.1f)
             {
                 // 공격
@@ -170,6 +181,12 @@ public class MonsterDetection : MonoBehaviour
             }
         }
         return false;
+    }
+
+    private IEnumerator IdleBeforePatrol()
+    {
+        yield return _waitForSeconds;
+        _monsterBase.ChangePatrolPattern();
     }
     
     

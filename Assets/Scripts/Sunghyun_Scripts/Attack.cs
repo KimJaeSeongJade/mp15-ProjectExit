@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Attack : Pattern
 {
+    
+    
     public override void OnAction()
     {
         

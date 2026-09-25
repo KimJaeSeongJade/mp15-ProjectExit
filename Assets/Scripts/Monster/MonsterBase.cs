@@ -2,27 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum MonsterState
-{
-    Idle,
-    Patrol,
-    Chase,
-    Attack
-}
 
 public class MonsterBase : MonoBehaviour, IAttackable
 {
     [SerializeField] private int _attackDamage;
     [SerializeField] private Pattern _currentPattern;
     
-    
-    
-    // [SerializeField] private Animator _animator;
     [field: SerializeField] public float MoveSpeed { get; private set; }
 
+    private Patrol _Patrol;
+    private Chase _Chase;
     
-    private MonsterState _monsterstate;
-    private int _patrolIndex;
+    // [SerializeField] private Animator _animator;
 
 
     // --------------------
@@ -35,7 +26,8 @@ public class MonsterBase : MonoBehaviour, IAttackable
 
     private void CacheComponents()
     {
-        
+        _Patrol = GetComponent<Patrol>();
+        _Chase = GetComponent<Chase>();
     }
 
     private void Init()
@@ -47,11 +39,6 @@ public class MonsterBase : MonoBehaviour, IAttackable
     {
         _currentPattern.OnAction();
     }
-
-    public void ChangeIdlePattern()
-    {
-        _currentPattern = GetComponent<Idle>();
-    }
     
     public void ChangeChasePattern()
     {
@@ -61,10 +48,6 @@ public class MonsterBase : MonoBehaviour, IAttackable
     public void ChangePatrolPattern()
     {
         _currentPattern = GetComponent<Patrol>();
+        _Patrol.CalculateStartPosition();
     }
-    
-
-    
-    
-    // IAttackable - Attack 구현
 }

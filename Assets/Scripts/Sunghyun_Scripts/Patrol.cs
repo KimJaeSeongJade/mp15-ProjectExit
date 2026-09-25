@@ -57,7 +57,7 @@ public class Patrol : Pattern
     /// <summary>
     /// 가장 가까운 웨이포인트 계산하는 함수
     /// </summary>
-    private void CalculateStartPosition()
+    public void CalculateStartPosition()
     {
         for (int i = 0; i < _wayPoints.Count; i++)
         {
@@ -71,6 +71,7 @@ public class Patrol : Pattern
                 _nextPosition = _wayPoints[_currentWayPointIndex].transform.position;
             }
         }
+        _distance = float.MaxValue;
     }
 
     private void CalculateNextPosition()
@@ -96,14 +97,13 @@ public class Patrol : Pattern
                 _currentWayPointIndex--;
                 _nextPosition = _wayPoints[_currentWayPointIndex].transform.position;
             }
-            else
+            else // 현재 위치가 인덱스 맨 처음
             {
                 _currentWayPointIndex++;
                 _nextPosition = _wayPoints[_currentWayPointIndex].transform.position;
                 _isReverseCycle = false;
             }
         }
-        
     }
 
     /// <summary>
