@@ -2,29 +2,52 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum MonsterState
-{
-    Idle,
-    Patrol,
-    Tracking,
-    Attack
-}
 
 public class MonsterBase : MonoBehaviour, IAttackable
 {
     [SerializeField] private int _attackDamage;
     [SerializeField] private Pattern _currentPattern;
-    // [SerializeField] private Animator _animator;
-    [field: SerializeField] public float moveSpeed { get; protected set; }
     
-    private MonsterState _monsterstate;
-    private int _patrolIndex;
+    [field: SerializeField] public float MoveSpeed { get; private set; }
 
+    private Patrol _Patrol;
+    private Chase _Chase;
     
-    private void Patrol()
+    // [SerializeField] private Animator _animator;
+
+
+    // --------------------
+
+    private void Awake() => CacheComponents();
+
+    private void Start() => Init();
+    
+    // --------------------
+
+    private void CacheComponents()
+    {
+        _Patrol = GetComponent<Patrol>();
+        _Chase = GetComponent<Chase>();
+    }
+
+    private void Init()
+    {
+        ChangePatrolPattern();
+    }
+    
+    public void DoAction()
     {
         _currentPattern.OnAction();
     }
     
-    // IAttackable - Attack 구현
+    public void ChangeChasePattern()
+    {
+        _currentPattern = GetComponent<Chase>();
+    }
+
+    public void ChangePatrolPattern()
+    {
+        _currentPattern = GetComponent<Patrol>();
+        _Patrol.CalculateStartPosition();
+    }
 }
