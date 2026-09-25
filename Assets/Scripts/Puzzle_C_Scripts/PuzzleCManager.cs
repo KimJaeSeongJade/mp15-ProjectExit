@@ -6,7 +6,7 @@ public class PuzzleCManager : MonoBehaviour
 {
     
     [SerializeField] private List<GoalPoint> _goalPoints = new();
-    [SerializeField] private GameObject _clearUI;
+   // [SerializeField] private GameObject _clearUI;
     
     public bool IsClear = false;
 
@@ -19,7 +19,7 @@ public class PuzzleCManager : MonoBehaviour
         {
             goalPoint.OnClearStateChanged += HandleGoalPointClearChanged;
         }
-        _clearUI.SetActive(false);
+        //_clearUI.SetActive(false);
     }
 
     private void OnDestroy()
@@ -51,8 +51,8 @@ public class PuzzleCManager : MonoBehaviour
     {
         Debug.Log("Game Clear!");
 
-        if (_clearUI != null)
-            _clearUI.SetActive(true);
+        /*if (_clearUI != null)
+            _clearUI.SetActive(true);*/
         IsClear = true;
     }
 }
