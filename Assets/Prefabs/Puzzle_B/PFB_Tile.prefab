@@ -341,7 +341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _blockLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   <_blocks>k__BackingField:
   - {fileID: 1707593977253862278}
   - {fileID: 8461656903489077717}
