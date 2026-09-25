@@ -13,6 +13,7 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] private GameObject _deadUI;
     [SerializeField] private GameObject _inGameUI;
     [SerializeField] private Button _howToPlayUIStartButton;
+    [SerializeField] private GameObject _gripUI;
 
     [SerializeField] private AudioClip _bgmAudioClip;
     private AudioPlayer _bgm;
@@ -38,14 +39,12 @@ public class InGameUIManager : MonoBehaviour
 
     private void BindGameFlowEvents()
     {
-        // GameManager.Instance.OnGamePause += Init;
         GameManager.Instance.OnGameStart += OnGameStart;
 
     }
 
     private void UnbindGameFlowEvents()
     {
-        // GameManager.Instance.OnGamePause -= Init;
         GameManager.Instance.OnGameStart -= OnGameStart;
     }
 
@@ -61,18 +60,10 @@ public class InGameUIManager : MonoBehaviour
     {
         _howToPlayUI.SetActive(false);
         _inGameUI.SetActive(true);
+        _gripUI.SetActive(false);
         _pauseQUI.SetActive(false);
 
-        if (_bgm == null)
-        {
-            _bgm = AudioManager.Instance.TakeAudioPlayer();
-            _bgm
-                .SetLoop(true)
-                .SetVolume(0.5f)
-                .SetAudioClip(_bgmAudioClip)
-                .PlayOnAwake(true)
-                .Play();
-        }
+        BgmInit();
     }
 
     private void OnGamePause()
@@ -111,6 +102,21 @@ public class InGameUIManager : MonoBehaviour
         _clearUI.SetActive(false);
         _deadUI.SetActive(false);
         _inGameUI.SetActive(false);
+        
         BeforePlaying();
+    }
+
+    private void BgmInit()
+    {
+        if (_bgm == null)
+        {
+            _bgm = AudioManager.Instance.TakeAudioPlayer();
+            _bgm
+                .SetLoop(true)
+                .SetVolume(0.5f)
+                .SetAudioClip(_bgmAudioClip)
+                .PlayOnAwake(true)
+                .Play();
+        }
     }
 }
