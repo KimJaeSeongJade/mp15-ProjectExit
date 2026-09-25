@@ -15,22 +15,18 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] private Button _howToPlayUIStartButton;
 
 
+    private void Awake() => Init();
     private void OnEnable() => BindButtonEvents();
     private void OnDisable() => UnbindButtonEvents();
 
-    private void LateUpdate()
-    {
-        //PressToPlay();
-    }
-
     private void BindButtonEvents()
     {
-        _howToPlayUIStartButton.onClick.AddListener(Init);
+        _howToPlayUIStartButton.onClick.AddListener(PressToPlay);
     }
 
     private void UnbindButtonEvents()
     {
-        _howToPlayUIStartButton.onClick.RemoveListener(Init);
+        _howToPlayUIStartButton.onClick.RemoveListener(PressToPlay);
     }
 
     private void PressToPlay()
@@ -43,11 +39,12 @@ public class InGameUIManager : MonoBehaviour
     private void Init()
     {
         _howToPlayUI.SetActive(true);
-        Time.timeScale = 0f;
         
         _pauseQUI.SetActive(false);
         _clearUI.SetActive(false);
         _deadUI.SetActive(false);
         _inGameUI.SetActive(false);
+        
+        Time.timeScale = 0f;
     }
 }
