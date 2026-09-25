@@ -74,6 +74,9 @@ public class InGameUIManager : MonoBehaviour
 
     private void OnGamePause()
     {
+        if(!_isPressedPauseKey)
+            return;
+        
         _pauseQUI.SetActive(true);
 
         if (_bgm != null)
@@ -134,6 +137,9 @@ public class InGameUIManager : MonoBehaviour
     
     [SerializeField] private Button _pauseQUIExitButton;
     [SerializeField] private Button _pauseQUIContinueButton;
-    
-    
+
+    private void LateUpdate()
+    {
+        OnGamePause();
+    }
 }
