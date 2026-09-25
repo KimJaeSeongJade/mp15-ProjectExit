@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,19 +15,31 @@ public class Attack : Pattern
     private Animator _animator;
     private MonsterBase _monsterBase;
     private Coroutine _attackRoutine;
-    private WaitForSeconds _waitForSeconds;
     private Vector3 _monsterRayPoint;
     private int _attackDamage;
-    private bool _isCoolingDown;
-    
-    public bool IsAttacked;
+    private bool _isCoolingDown = false;
+    private bool _isAttacked = false;
     
     // --------------------
 
     private void Awake() => CacheComponents();
 
     private void Start() => Init();
+
+    private void OnDrawGizmos()
+    {
+        _monsterRayPoint = new Vector3(
+            transform.position.x,
+            transform.position.y + _offsetYPosition,
+            transform.position.z
+        );
+
+        Gizmos.color = Color.black;
+        Ray ray = new Ray(_monsterRayPoint, transform.forward);
         
+        Gizmos.DrawRay(_monsterRayPoint, transform.forward * _RaycastRange);
+    }
+
     // --------------------
 
     private void CacheComponents()
@@ -38,14 +51,13 @@ public class Attack : Pattern
     private void Init()
     {
         _attackDamage = _monsterBase.AttackDamage;
-        _waitForSeconds = new WaitForSeconds(_delayTime);
     }
     
     public override void OnAction()
     {
-        if (!IsAttacked && !_isCoolingDown) // 아직 공격안했으면
+        if (!_isAttacked && !_isCoolingDown) // 아직 공격안했으면
         {
-            IsAttacked = true;
+            _isAttacked = true;
             StartCoroutine(AttackRoutine());
         }
     }
@@ -55,11 +67,22 @@ public class Attack : Pattern
         // 애니메이션
         //_animator.SetBool();
 
-        yield return _waitForSeconds; // 애니메이션 중간정도 시간
-
+        Debug.Log("공격중........");
+        yield return new WaitForSeconds(_delayTime); // 애니메이션 중간정도 시간
+        Debug.Log("공격완료......");
+        
         ShootRay(); // Raycast 쏘고
 
-        IsAttacked = false;
+        _isAttacked = false;
+        
+        // 공격 쿨타임 구현
+        _isCoolingDown = true;
+        Debug.Log("쿨타임돌아가는중........");
+        yield return new WaitForSeconds(_attackCooldown);
+        Debug.Log("쿨타임 끝남........");
+        _isCoolingDown = false;
+        
+        _monsterBase.ChangeChasePattern();
     }
 
     private void ShootRay()

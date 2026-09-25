@@ -72,7 +72,7 @@ public class Chase : Pattern
             _lastPosition = _playerTransform.position; // Debug. 이거 이래도 되나...?
             
             // 공격
-            if (Vector3.Distance(transform.position, _playerTransform.position) < 0.1f)
+            if (Vector3.Distance(transform.position, _playerTransform.position) < 2f)
             {
                 _monsterBase.ChangeAttackPattern();
                 
