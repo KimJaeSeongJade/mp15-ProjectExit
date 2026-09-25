@@ -485,6 +485,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Map
       objectReference: {fileID: 0}
+    - target: {fileID: 3774785696966333667, guid: 99ce73519ae547843846ce71fe6402e9, type: 3}
+      propertyPath: _puzzleB
+      value: 
+      objectReference: {fileID: 3496313149242446932, guid: 458b8f4a53d1d5b4ea58c270c2df7307, type: 3}
+    - target: {fileID: 3774785696966333667, guid: 99ce73519ae547843846ce71fe6402e9, type: 3}
+      propertyPath: _puzzleC
+      value: 
+      objectReference: {fileID: 4120350721440711208, guid: 74afdcb4702e0cf4badab325d23bf7a7, type: 3}
     - target: {fileID: 6854958641980881503, guid: 99ce73519ae547843846ce71fe6402e9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

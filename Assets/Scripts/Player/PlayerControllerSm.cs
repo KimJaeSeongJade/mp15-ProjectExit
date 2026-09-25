@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerControllerSm : MonoBehaviour, IDamageable, IInteractor
 {
+    [SerializeField] private Transform _muzzlePoint;
     private PlayerMovement _movement;
     private PlayerStat _stat;
-    [SerializeField] private Transform _muzzlePoint;
     [field: SerializeField] public Transform GrapPoint;
     
     private float _rayDistance = 2f;
