@@ -42,22 +42,26 @@ public class InGameUIManager : MonoBehaviour
     private void BindGameFlowEvents()
     {
         GameManager.Instance.OnGameStart += OnGameStart;
+        GameManager.Instance.OnGamePause += OnGamePause;
 
     }
 
     private void UnbindGameFlowEvents()
     {
         GameManager.Instance.OnGameStart -= OnGameStart;
+        GameManager.Instance.OnGamePause -= OnGamePause;
     }
 
     private void UnbindButtonEvents()
     {
         _howToPlayUIStartButton.onClick.RemoveListener(PressToPlay);
+        _pauseQUIContinueButton.onClick.RemoveListener(OnGamePause);
+        _pauseQUIExitButton.onClick.RemoveListener(OnGamePause);
     }
 
     private void BeforePlaying() =>GameManager.Instance.PauseGame();
     private void PressToPlay() => GameManager.Instance.StartGame();
-
+    
     private void OnGameStart()
     {
         _howToPlayUI.SetActive(false);
@@ -76,8 +80,6 @@ public class InGameUIManager : MonoBehaviour
         {
             _bgm.Pause();
         }
-        
-        
     }
 
     private void OnGameResume()
