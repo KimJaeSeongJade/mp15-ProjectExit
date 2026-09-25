@@ -35,6 +35,8 @@ public class InGameUIManager : MonoBehaviour
     private void BindButtonEvents()
     {
         _howToPlayUIStartButton.onClick.AddListener(PressToPlay);
+        _pauseQUIContinueButton.onClick.AddListener(OnGamePause);
+        _pauseQUIExitButton.onClick.AddListener(OnGamePause);
     }
 
     private void BindGameFlowEvents()
@@ -74,10 +76,13 @@ public class InGameUIManager : MonoBehaviour
         {
             _bgm.Pause();
         }
+        
+        
     }
 
     private void OnGameResume()
     {
+        _pauseQUI.SetActive(false);
 
         if (_bgm != null)
         {
@@ -87,7 +92,8 @@ public class InGameUIManager : MonoBehaviour
 
     private void OnGameOver()
     {
-
+        _deadUI.SetActive(true);
+        
         if (_bgm != null)
         {
             _bgm.Stop();
@@ -119,4 +125,13 @@ public class InGameUIManager : MonoBehaviour
                 .Play();
         }
     }
+    
+    // + 
+    [SerializeField] private KeyCode _pauseKey = KeyCode.Q;
+    private bool _isPressedPauseKey=>Input.GetKeyDown(_pauseKey);
+    
+    [SerializeField] private Button _pauseQUIExitButton;
+    [SerializeField] private Button _pauseQUIContinueButton;
+    
+    
 }
