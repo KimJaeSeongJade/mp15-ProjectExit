@@ -222,6 +222,7 @@ GameObject:
   - component: {fileID: 8341306518832853701}
   - component: {fileID: 7343454235427152259}
   - component: {fileID: 2876170305067713285}
+  - component: {fileID: 3940026265202859401}
   m_Layer: 5
   m_Name: '[Canvas] InGameUI'
   m_TagString: Untagged
@@ -317,6 +318,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3940026265202859401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3363535572010116204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a914e0f4828fb6f419dc94091b7ec78e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clearToggleA: {fileID: 1720785217723028871}
+  _clearToggleB: {fileID: 9215577392884625930}
+  _clearToggleC: {fileID: 4277432556684626480}
+  _playTimeText: {fileID: 2452199266231420402}
 --- !u!1 &3406835139916904904
 GameObject:
   m_ObjectHideFlags: 0
