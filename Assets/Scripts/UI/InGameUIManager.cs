@@ -14,6 +14,9 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] private GameObject _inGameUI;
     [SerializeField] private Button _howToPlayUIStartButton;
 
+    [SerializeField] private AudioClip _bgmAudioClip;
+    private AudioPlayer _bgm;
+    
     private void Awake() => Init();
 
     private void OnEnable()
@@ -35,14 +38,14 @@ public class InGameUIManager : MonoBehaviour
 
     private void BindGameFlowEvents()
     {
-        GameManager.Instance.OnGamePause += Init;
+        // GameManager.Instance.OnGamePause += Init;
         GameManager.Instance.OnGameStart += OnGameStart;
 
     }
 
     private void UnbindGameFlowEvents()
     {
-        GameManager.Instance.OnGamePause -= Init;
+        // GameManager.Instance.OnGamePause -= Init;
         GameManager.Instance.OnGameStart -= OnGameStart;
     }
 
@@ -58,6 +61,46 @@ public class InGameUIManager : MonoBehaviour
     {
         _howToPlayUI.SetActive(false);
         _inGameUI.SetActive(true);
+        _pauseQUI.SetActive(false);
+
+        if (_bgm == null)
+        {
+            _bgm = AudioManager.Instance.TakeAudioPlayer();
+            _bgm
+                .SetLoop(true)
+                .SetVolume(0.5f)
+                .SetAudioClip(_bgmAudioClip)
+                .PlayOnAwake(true)
+                .Play();
+        }
+    }
+
+    private void OnGamePause()
+    {
+        _pauseQUI.SetActive(true);
+
+        if (_bgm != null)
+        {
+            _bgm.Pause();
+        }
+    }
+
+    private void OnGameResume()
+    {
+
+        if (_bgm != null)
+        {
+            _bgm.Play();
+        }
+    }
+
+    private void OnGameOver()
+    {
+
+        if (_bgm != null)
+        {
+            _bgm.Stop();
+        }
     }
 
     private void Init()
