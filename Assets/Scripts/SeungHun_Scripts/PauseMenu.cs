@@ -24,12 +24,13 @@ public class PauseMenu : MonoBehaviour
     private void BindButtonEvents()
     {
         _continue.onClick.AddListener(HidePanel);
-        _exit
+        _exit.onClick.AddListener(GoToTitle);
     }
 
     private void UnBindButtonEvents()
     {
         _continue.onClick.RemoveListener(HidePanel);
+        _exit.onClick.RemoveListener(GoToTitle);
     }
 
     private void HidePanel()
