@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Map
       objectReference: {fileID: 0}
+    - target: {fileID: 1359456272162769921, guid: 99ce73519ae547843846ce71fe6402e9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6854958641980881503, guid: 99ce73519ae547843846ce71fe6402e9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -206,9 +210,10 @@ MonoBehaviour:
   _puzzleCSpawnPoint: {fileID: 8877412174660666408, guid: 4b9acedc38d79814987c1971a0f27a0b, type: 3}
   _exitSpawnPoint: {fileID: 2303569042375049112, guid: be52349fbfb8e81408edc035f79d80ca, type: 3}
   _player: {fileID: 6392086174620289489, guid: b38b825d1b475f447be350f95d16d04c, type: 3}
-  _puzzleA: {fileID: 0}
-  _puzzleB: {fileID: 0}
-  _puzzleC: {fileID: 0}
+  _puzzleA: {fileID: 2462044669703633518, guid: ae1f84f3e5dc22c4cba9c20180e079b4, type: 3}
+  _puzzleB: {fileID: 1112530927828467795, guid: 734a17b1132a1154b853ab5c5f90f71f, type: 3}
+  _puzzleC: {fileID: 4120350721440711208, guid: 0daae5a6386b990419e5db7b9ee8d6d0, type: 3}
+  _exit: {fileID: 7280870811968955568, guid: 57a737e28088e874e954fb512f992aa5, type: 3}
 --- !u!1 &239750908
 GameObject:
   m_ObjectHideFlags: 0
