@@ -16,12 +16,14 @@ public class PuzzleA_Manager : MonoBehaviour
 
    public bool IsClear = false;
    private int clearCount;
+   public bool _Rot;
    
    private void Awake()
    {
       clearCount = 0;
       IsClear = false;
       _textInfo.text = "=RAINBOW=";
+      _Rot = false;
    }
 
 
@@ -44,9 +46,10 @@ public class PuzzleA_Manager : MonoBehaviour
       {
          _textInfo.text = "FAIL.";
          StartCoroutine(Text());
-         ResetPlatforms();
-         _playerArray.Clear();
-         IsClear = false;
+         StartCoroutine(ResetPlatforms());
+         //ResetPlatforms();
+         /*_playerArray.Clear();
+         IsClear = false;*/
       }
 
       if (isClear && _playerArray.Count == _clearArray.Count)
@@ -68,11 +71,36 @@ public class PuzzleA_Manager : MonoBehaviour
    }
 
 
-   public void ResetPlatforms()
+   public IEnumerator ResetPlatforms()
    {
+      _Rot = true;
+      yield return new WaitForSeconds(0.2f);
       foreach (Platform platform in _playerArray)
       {
          platform.OffColor();
       }
+      yield return new WaitForSeconds(0.2f);
+      foreach (Platform platform in _playerArray)
+      {
+         platform.OnColor();
+      }
+      yield return new WaitForSeconds(0.2f);
+      foreach (Platform platform in _playerArray)
+      {
+         platform.OffColor();
+      }
+      yield return new WaitForSeconds(0.2f);
+      foreach (Platform platform in _playerArray)
+      {
+         platform.OnColor();
+      }
+      yield return new WaitForSeconds(0.2f);
+      foreach (Platform platform in _playerArray)
+      {
+         platform.OffColor();
+      }
+      _playerArray.Clear();
+      IsClear = false;
+      _Rot = false;
    }
 }
