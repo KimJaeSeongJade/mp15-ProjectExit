@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerControllerSm : MonoBehaviour, IDamageable, IInteractor
 {
+    [SerializeField] private Transform _cameraPivot;
     [SerializeField] private Transform _muzzlePoint;
     private PlayerMovement _movement;
     private PlayerStat _stat;
@@ -19,6 +21,8 @@ public class PlayerControllerSm : MonoBehaviour, IDamageable, IInteractor
     public bool _isDead => _stat.PlayerHealth <= 0;
     public Rigidbody GetPlayerRigidbody => _movement._rigidbody;
     
+    private Transform _cameraTransform;
+    
     private void Awake() => CacheComponents();
     private void FixedUpdate() => _movement.Move();
     private void Update()
@@ -27,6 +31,8 @@ public class PlayerControllerSm : MonoBehaviour, IDamageable, IInteractor
         GetInteract();
         _movement.Rotate();
     }
+
+    private void LateUpdate() => SetCameraTransform();
 
     public void TakeDamage(int damage)
     {
@@ -78,5 +84,11 @@ public class PlayerControllerSm : MonoBehaviour, IDamageable, IInteractor
     {
         _movement = GetComponent<PlayerMovement>();
         _stat = GetComponent<PlayerStat>();
+        _cameraTransform = Camera.main.transform;
+    }
+
+    private void SetCameraTransform()
+    {
+        _cameraTransform.SetPositionAndRotation(_cameraPivot.position, _cameraPivot.rotation);
     }
 }
