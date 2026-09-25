@@ -17,8 +17,6 @@ public class SpawnerPoint : MonoBehaviour
     [SerializeField] private GameObject _puzzleA;
     [SerializeField] private GameObject _puzzleB;
     [SerializeField] private GameObject _puzzleC;
-    
-    [SerializeField] private GameObject _exit;
 
     private void Start() => Spawn();
 
@@ -29,6 +27,5 @@ public class SpawnerPoint : MonoBehaviour
         Instantiate(_puzzleA, _puzzleASpawnPoint.position, Quaternion.identity); 
         Instantiate(_puzzleB, _puzzleBSpawnPoint.position, Quaternion.identity);
         Instantiate(_puzzleC, _puzzleCSpawnPoint.position, Quaternion.identity);
-        Instantiate(_exitSpawnPoint, _exitSpawnPoint.position, Quaternion.identity);
     }
 }
