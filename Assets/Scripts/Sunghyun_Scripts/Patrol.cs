@@ -115,5 +115,7 @@ public class Patrol : Pattern
             transform.position,
             _nextPosition,
             _moveSpeed * Time.deltaTime);
+        
+        transform.rotation = Quaternion.LookRotation(_nextPosition - transform.position, transform.up);
     }
 }
