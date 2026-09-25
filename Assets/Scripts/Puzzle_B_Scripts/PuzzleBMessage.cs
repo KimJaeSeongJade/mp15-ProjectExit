@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class PuzzleBMessage : MonoBehaviour
 {
-    [SerializeField] private Transform _playerCam; // 메인카메라 참조
-    private void Awake() => Init();
+    private Transform _cameraTransform; // 메인카메라 참조
 
+    private void Awake() => CacheComponents();
+    private void Start() => Init();
     private void Update() => SetRotation();
-    
+
+    private void CacheComponents()
+    {
+        _cameraTransform = Camera.main.transform;
+    }
+
     private void Init()
     {
         transform.gameObject.SetActive(false);
@@ -16,6 +22,6 @@ public class PuzzleBMessage : MonoBehaviour
 
     private void SetRotation()
     {
-        transform.LookAt(_playerCam);
+        transform.forward = _cameraTransform.forward;
     }
 }
