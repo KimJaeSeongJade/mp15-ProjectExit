@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PuzzleBManager : MonoBehaviour
+public class PuzzleBManager : PuzzleBase
 {
     [SerializeField] private DetectPlatform _detectPlatform; // 타일을 참조
     [SerializeField] private PuzzleBMessage _puzzleBMessage;
-    
-    public bool IsClear = false;
     
     private void Update()
     {

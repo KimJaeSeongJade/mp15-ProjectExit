@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
-public class PuzzleA_Manager : MonoBehaviour
+public class PuzzleA_Manager : PuzzleBase
 {
    [SerializeField] private List<Platform> _clearArray;
    [SerializeField] private Material _base;
@@ -14,7 +14,6 @@ public class PuzzleA_Manager : MonoBehaviour
    
    public List<Platform> _playerArray = new(6);
 
-   public bool IsClear = false;
    private int clearCount;
    public bool _Rot;
    

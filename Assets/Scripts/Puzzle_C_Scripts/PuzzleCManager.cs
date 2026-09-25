@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PuzzleCManager : MonoBehaviour
+public class PuzzleCManager : PuzzleBase
 {
-    
     [SerializeField] private List<GoalPoint> _goalPoints = new();
     [SerializeField] private GameObject _clearUI;
-    
-    public bool IsClear = false;
 
     private void Awake()
     {
