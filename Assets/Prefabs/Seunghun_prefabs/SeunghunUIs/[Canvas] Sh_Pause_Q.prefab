@@ -1696,7 +1696,7 @@ GameObject:
   - component: {fileID: 5837919199243570250}
   - component: {fileID: 6836961127176321563}
   m_Layer: 5
-  m_Name: '[Canvas] ShPause_Q'
+  m_Name: '[Canvas] Sh_Pause_Q'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
