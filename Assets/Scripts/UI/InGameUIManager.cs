@@ -35,8 +35,9 @@ public class InGameUIManager : MonoBehaviour
     private void BindButtonEvents()
     {
         _howToPlayUIStartButton.onClick.AddListener(PressToPlay);
-        _pauseQUIContinueButton.onClick.AddListener(OnClickContinue);
         _pauseQUIExitButton.onClick.AddListener(OnGamePause);
+        _pauseQUIContinueButton.onClick.AddListener(OnClickContinue);
+        _pauseQUIExitButton.onClick.AddListener(OnClickExit);
     }
 
     private void BindGameFlowEvents()
@@ -44,7 +45,6 @@ public class InGameUIManager : MonoBehaviour
         GameManager.Instance.OnGameStart += OnGameStart;
         GameManager.Instance.OnGamePause += OnGamePause;
         GameManager.Instance.OnGameResume += OnGameResume;
-
     }
 
     private void UnbindGameFlowEvents()
@@ -57,13 +57,15 @@ public class InGameUIManager : MonoBehaviour
     private void UnbindButtonEvents()
     {
         _howToPlayUIStartButton.onClick.RemoveListener(PressToPlay);
-        _pauseQUIContinueButton.onClick.RemoveListener(OnClickContinue);
         _pauseQUIExitButton.onClick.RemoveListener(OnGamePause);
+        _pauseQUIContinueButton.onClick.RemoveListener(OnClickContinue);
+        _pauseQUIExitButton.onClick.RemoveListener(OnClickExit);
     }
 
     private void BeforePlaying() =>GameManager.Instance.PauseGame();
     private void PressToPlay() => GameManager.Instance.StartGame();
     private void OnClickContinue() => GameManager.Instance.ResumeGame();
+    private void OnClickExit() => GameManager.Instance.LoadScene("GameTitle");
     
     private void OnGameStart()
     {
