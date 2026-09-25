@@ -36,6 +36,7 @@ public class PuzzleA_Manager : MonoBehaviour
       
       if (!isClear)
       {
+         Debug.Log("오답입니다. 다시 시도하세요.");
          ResetPlatforms();
          _playerArray.Clear();
          IsClear = false;
@@ -45,8 +46,9 @@ public class PuzzleA_Manager : MonoBehaviour
       {
          foreach (Platform p in _playerArray)
          {
+            Debug.Log("축하합니다. 해당 퍼즐을 클리어하셨습니다.");
             p.FixOnColor();
-            p.Clear();
+            // p.Clear();
          }
 
          IsClear = true;
