@@ -122,6 +122,51 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &128883348
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 128883350}
+  - component: {fileID: 128883349}
+  m_Layer: 0
+  m_Name: Tester
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &128883349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128883348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4fa336ef88dc3149ade06d4ca7dcd6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pauseUI: {fileID: 1430363810}
+--- !u!4 &128883350
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128883348}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1046.3859, y: 789.53827, z: 1.3466642}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &245472810 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 42877694904516153, guid: 1fa9ce62b8e588d45a2be685341d6bfc, type: 3}
@@ -523,11 +568,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[Canvas] Pause_Q'
       objectReference: {fileID: 0}
+    - target: {fileID: 8292998315887941781, guid: 5f0ed1b175eea614bb1ef1b5cff8fe48, type: 3}
+      propertyPath: _timeChecker
+      value: 
+      objectReference: {fileID: 644255311}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f0ed1b175eea614bb1ef1b5cff8fe48, type: 3}
+--- !u!1 &1430363810 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1245315684450072713, guid: 5f0ed1b175eea614bb1ef1b5cff8fe48, type: 3}
+  m_PrefabInstance: {fileID: 1430363802}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1465461339
 GameObject:
   m_ObjectHideFlags: 0
@@ -1108,3 +1162,4 @@ SceneRoots:
   - {fileID: 1756730797}
   - {fileID: 644255312}
   - {fileID: 1465461343}
+  - {fileID: 128883350}
