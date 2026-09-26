@@ -54,9 +54,9 @@ public class GameManager : Singleton<GameManager>
 
     public void ClearGame()
     {
+        IsGameClear = true;
         OnGameClear?.Invoke();
         Time.timeScale = 1;
-        IsGameClear = true;
     }
 
     public void LoadScene(string sceneName)

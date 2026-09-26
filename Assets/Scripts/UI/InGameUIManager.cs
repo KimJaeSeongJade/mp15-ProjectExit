@@ -18,6 +18,8 @@ public class InGameUIManager : MonoBehaviour
 
     [SerializeField] private AudioClip _bgmAudioClip;
     private AudioPlayer _bgm;
+
+    private bool _endSignal => GameManager.Instance.IsGameClear;
     
     private void Awake() => Init();
 
@@ -45,7 +47,6 @@ public class InGameUIManager : MonoBehaviour
         
         _deadQUIExitButton.onClick.AddListener(OnClickUIExit);
         _deadQUIAgainButton.onClick.AddListener(OnClickRetryGame);
-        
     }
 
     private void BindGameFlowEvents()
@@ -197,17 +198,15 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] private Button _clearQUIAgainButton;
     [SerializeField] private Button _clearQUIExitButton;
 
-    public void OnGameClear()
+    private void OnGameClear()
     {
-        if(!_isPressedClearKey)
+        if(!_endSignal)
             return;
-        
-        _clearUI.SetActive(true);
-        
+        _clearUI.SetActive(true);     
         if (_bgm != null)
-        {
-            _bgm.Stop();
-        }
+        {      
+            _bgm.Stop();    
+        }    
     }
 
     private void OnClickRetryGame()
