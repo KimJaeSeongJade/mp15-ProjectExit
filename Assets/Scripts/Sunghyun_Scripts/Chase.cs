@@ -15,6 +15,8 @@ public class Chase : Pattern
     private WaitForSeconds _waitForSeconds;
     private Coroutine _idleRoutine;
     
+    public bool IsIdling { get; private set; }
+    
     // --------------------
     
     private void Awake() => CacheComponents();
@@ -41,7 +43,7 @@ public class Chase : Pattern
         
         if (_remainPositon) // 플레이어 감지가 끊기고 마지막위치로 이동할때
         {
-            if (_playerTransform != null)
+            if (_playerTransform != null) // 다시 감지 됐을때
             {
                 if (_idleRoutine != null)
                 {
@@ -105,7 +107,9 @@ public class Chase : Pattern
 
     private IEnumerator _IdleBeforePatrol()
     {
+        IsIdling = true;
         yield return _waitForSeconds;
+        IsIdling = false;
         _monsterBase.ChangePatrolPattern();
     }
 }
