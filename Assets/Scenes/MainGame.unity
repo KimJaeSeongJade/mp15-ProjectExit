@@ -1110,7 +1110,7 @@ PrefabInstance:
     - target: {fileID: 3774785696966333667, guid: 99ce73519ae547843846ce71fe6402e9, type: 3}
       propertyPath: _monster
       value: 
-      objectReference: {fileID: 5602547279102112568, guid: 4d81a14216e568f44874c4c686d11b74, type: 3}
+      objectReference: {fileID: 6258657721309969381, guid: 160ae43522a4fac4cb2ec33e437d8ab1, type: 3}
     - target: {fileID: 3774785696966333667, guid: 99ce73519ae547843846ce71fe6402e9, type: 3}
       propertyPath: _exitHole
       value: 
