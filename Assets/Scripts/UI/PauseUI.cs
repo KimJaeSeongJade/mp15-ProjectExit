@@ -74,6 +74,6 @@ public class PauseUI : MonoBehaviour
     private void Exit()
     {
         GameManager.Instance.LoadScene(_titleScene);
-        Time.timeScale = 1;
+        GameManager.Instance.ResumeGame();
     }
 }
