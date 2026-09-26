@@ -14,6 +14,7 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] private GameObject _inGameUI;
     [SerializeField] private Button _howToPlayUIStartButton;
     [SerializeField] private GameObject _gripUI;
+    [SerializeField] private GameObject _playerHpUI;
 
     [SerializeField] private AudioClip _bgmAudioClip;
     private AudioPlayer _bgm;
@@ -101,6 +102,7 @@ public class InGameUIManager : MonoBehaviour
     {
         _howToPlayUI.SetActive(false);
         _inGameUI.SetActive(true);
+        _playerHpUI.SetActive(true);
         _gripUI.SetActive(false);
         _pauseQUI.SetActive(false);
 
@@ -151,6 +153,7 @@ public class InGameUIManager : MonoBehaviour
         _clearUI.SetActive(false);
         _deadUI.SetActive(false);
         _inGameUI.SetActive(false);
+        _playerHpUI.SetActive(false);
         
         BeforePlaying();
     }
