@@ -188,14 +188,16 @@ public class InGameUIManager : MonoBehaviour
         OnGameOver();
     }
     
+    #if UNITY_EDITOR
     // + Clear 관련
     private KeyCode _clearKey = KeyCode.C; // 임시 설정
+    #endif
+    
     private bool _isPressedClearKey => Input.GetKeyDown(_clearKey);
     [SerializeField] private Button _clearQUIAgainButton;
     [SerializeField] private Button _clearQUIExitButton;
 
-
-    private void OnGameClear()
+    public void OnGameClear()
     {
         if(!_isPressedClearKey)
             return;

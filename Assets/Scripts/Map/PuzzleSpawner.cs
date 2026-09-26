@@ -56,6 +56,8 @@ public class SpawnerPoint : MonoBehaviour
             if(!puzzle.IsClear) isClearAllPuzzles = false;
             break;
         }
+        
+        Debug.Log(isClearAllPuzzles);
 
         if (!isClearAllPuzzles) return;
         
