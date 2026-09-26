@@ -118,7 +118,7 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 128
-  _attackCooldown: 2
+  _attackCooldown: 3
   _delayTime: 0.2
   _RaycastRange: 2
   _offsetYPosition: 1

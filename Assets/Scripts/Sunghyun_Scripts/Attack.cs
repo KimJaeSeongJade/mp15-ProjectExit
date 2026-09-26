@@ -6,7 +6,7 @@ using UnityEngine;
 public class Attack : Pattern
 {
     [SerializeField] private LayerMask _layerMask;
-    [SerializeField] private float _attackCooldown;
+    [SerializeField] private float _attackCooldown = 3;
     [SerializeField] private float _delayTime;
     [SerializeField] private float _RaycastRange;
     [SerializeField] private float _offsetYPosition;
