@@ -9,8 +9,8 @@ public class PlayerAnimHandler : MonoBehaviour
     [SerializeField] private string _moveZpram;
     [SerializeField] private string _isDead;
 
-    private int _moveX;
-    private int _moveZ;
+    private int _moveX = 0;
+    private int _moveZ = 0;
     private bool _playerDead;
 
     private PlayerAnimController _controller;
