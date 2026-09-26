@@ -54,6 +54,7 @@ public class InGameUIManager : MonoBehaviour
         GameManager.Instance.OnGamePause += OnGamePause;
         GameManager.Instance.OnGameResume += OnGameResume;
         GameManager.Instance.OnGameOver += OnGameOver;
+        GameManager.Instance.OnGameClear += OnGameClear;
     }
 
     private void UnbindGameFlowEvents()
@@ -65,6 +66,7 @@ public class InGameUIManager : MonoBehaviour
         GameManager.Instance.OnGamePause -= OnGamePause;
         GameManager.Instance.OnGameResume -= OnGameResume;
         GameManager.Instance.OnGameOver -= OnGameOver;
+        GameManager.Instance.OnGameClear -= OnGameClear;
     }
 
     private void UnbindButtonEvents()
@@ -191,6 +193,7 @@ public class InGameUIManager : MonoBehaviour
     private bool _isPressedClearKey => Input.GetKeyDown(_clearKey);
     [SerializeField] private Button _clearQUIAgainButton;
     [SerializeField] private Button _clearQUIExitButton;
+
 
     private void OnGameClear()
     {
