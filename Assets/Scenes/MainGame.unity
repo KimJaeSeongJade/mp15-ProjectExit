@@ -488,6 +488,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Map
       objectReference: {fileID: 0}
+    - target: {fileID: 3774785696966333667, guid: 99ce73519ae547843846ce71fe6402e9, type: 3}
+      propertyPath: _monster
+      value: 
+      objectReference: {fileID: 6258657721309969381, guid: 160ae43522a4fac4cb2ec33e437d8ab1, type: 3}
     - target: {fileID: 6854958641980881503, guid: 99ce73519ae547843846ce71fe6402e9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
