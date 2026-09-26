@@ -12,7 +12,7 @@ public class SpawnerPoint : MonoBehaviour
     [SerializeField] private Transform _exitHolePoint;
     
     [SerializeField] private GameObject _player;
-    // [SerializeField] private GameObject _monster;
+    [SerializeField] private GameObject _monster;
     
     [SerializeField] private GameObject _puzzleA;
     [SerializeField] private GameObject _puzzleB;
@@ -30,7 +30,7 @@ public class SpawnerPoint : MonoBehaviour
     private void Spawn()
     {
         Instantiate(_player, PlayerSpawnPoint.position, Quaternion.identity);
-        // Instantiate(_monster, MonsterSpawnPoint.position, Quaternion.identity);
+        Instantiate(_monster, MonsterSpawnPoint.position, Quaternion.identity);
         Instantiate(_puzzleA, _puzzleASpawnPoint.position, Quaternion.identity); 
         Instantiate(_puzzleB, _puzzleBSpawnPoint.position, Quaternion.identity);
         Instantiate(_puzzleC, _puzzleCSpawnPoint.position, Quaternion.identity);
