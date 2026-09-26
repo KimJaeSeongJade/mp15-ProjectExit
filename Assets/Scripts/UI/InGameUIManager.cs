@@ -150,10 +150,12 @@ public class InGameUIManager : MonoBehaviour
 
     private void Init()
     {
+        GameManager.Instance.RestartGame();
+        
+        _clearUI.SetActive(false);
         _howToPlayUI.SetActive(true);
         
         _pauseQUI.SetActive(false);
-        _clearUI.SetActive(false);
         _deadUI.SetActive(false);
         _inGameUI.SetActive(false);
         _playerHpUI.SetActive(false);
@@ -189,12 +191,6 @@ public class InGameUIManager : MonoBehaviour
         OnGameOver();
     }
     
-    #if UNITY_EDITOR
-    // + Clear 관련
-    private KeyCode _clearKey = KeyCode.C; // 임시 설정
-    #endif
-    
-    private bool _isPressedClearKey => Input.GetKeyDown(_clearKey);
     [SerializeField] private Button _clearQUIAgainButton;
     [SerializeField] private Button _clearQUIExitButton;
 
@@ -202,6 +198,7 @@ public class InGameUIManager : MonoBehaviour
     {
         if(!_endSignal)
             return;
+        
         _clearUI.SetActive(true);     
         if (_bgm != null)
         {      
@@ -211,6 +208,7 @@ public class InGameUIManager : MonoBehaviour
 
     private void OnClickRetryGame()
     {
+        _clearUI.SetActive(false);
         GameManager.Instance.LoadScene("MainGame");
     }
     

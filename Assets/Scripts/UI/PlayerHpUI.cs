@@ -6,36 +6,34 @@ using UnityEngine.UI;
 public class PlayerHpUI : MonoBehaviour
 {
     [SerializeField] private Image _gauge;
-    [SerializeField] private float _maxHp;
-    private float _currentHp;
-
-    private void Awake() => Init();
-    private void LateUpdate()
-    {
-        RefreshMonsterHp();
-        Damage();
-    }
     
-    private void RefreshMonsterHp()
+    private PlayerStat _playerStat;
+
+    private void OnEnable() => TryBindPlayer();
+
+    private void Update()
     {
-        _gauge.fillAmount = _currentHp / _maxHp;
+        if (_playerStat == null)
+            TryBindPlayer(); 
     }
 
-    private void Init()
+    private void OnDisable()
     {
-        _currentHp = _maxHp;
+        if (_playerStat != null)
+            _playerStat.OnHealthChanged -= RefreshGauge;
     }
-    
-    // + 임시 키
-    private KeyCode _damageKey = KeyCode.Space;
-    private float _damageAmount = 20f;
-    private bool _isPressedDamageKey => Input.GetKeyDown(_damageKey); 
-    
-    private void Damage()
+
+    private void TryBindPlayer()
     {
-        if(!_isPressedDamageKey)
-            return;
-        
-        _currentHp -= _damageAmount;
+        _playerStat = FindObjectOfType<PlayerStat>();
+        if (_playerStat == null) return;
+
+        _playerStat.OnHealthChanged += RefreshGauge;
+        RefreshGauge(_playerStat.PlayerHealth, _playerStat.MaxHealth); 
+    }
+
+    private void RefreshGauge(int current, int max)
+    {
+        _gauge.fillAmount = (float)current / max;
     }
 }
