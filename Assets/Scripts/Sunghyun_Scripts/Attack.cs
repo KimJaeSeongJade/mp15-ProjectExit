@@ -20,6 +20,8 @@ public class Attack : Pattern
     private bool _isCoolingDown = false;
     private bool _isAttacked = false;
     
+    public bool IsAttacking { get;  private set; }
+    
     // --------------------
 
     private void Awake() => CacheComponents();
@@ -58,6 +60,7 @@ public class Attack : Pattern
         if (!_isAttacked && !_isCoolingDown) // 아직 공격안했으면
         {
             _isAttacked = true;
+            IsAttacking = true;
             StartCoroutine(AttackRoutine());
         }
     }
@@ -81,6 +84,8 @@ public class Attack : Pattern
         yield return new WaitForSeconds(_attackCooldown);
         Debug.Log("쿨타임 끝남........");
         _isCoolingDown = false;
+
+        IsAttacking = false;
         
         _monsterBase.ChangeChasePattern();
     }
