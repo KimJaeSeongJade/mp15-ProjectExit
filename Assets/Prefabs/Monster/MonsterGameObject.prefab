@@ -610,6 +610,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monster (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5389448965292195865, guid: 80dbe638e835e9f4c9f9a5f334bc7d18, type: 3}
+      propertyPath: <AttackDamage>k__BackingField
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7958053391358446181, guid: 80dbe638e835e9f4c9f9a5f334bc7d18, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18.27
@@ -695,6 +699,10 @@ PrefabInstance:
     - target: {fileID: 2328264588483759165, guid: 80dbe638e835e9f4c9f9a5f334bc7d18, type: 3}
       propertyPath: m_Name
       value: Monster
+      objectReference: {fileID: 0}
+    - target: {fileID: 5389448965292195865, guid: 80dbe638e835e9f4c9f9a5f334bc7d18, type: 3}
+      propertyPath: <AttackDamage>k__BackingField
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7958053391358446181, guid: 80dbe638e835e9f4c9f9a5f334bc7d18, type: 3}
       propertyPath: m_LocalPosition.x
@@ -996,6 +1004,10 @@ PrefabInstance:
     - target: {fileID: 2328264588483759165, guid: 80dbe638e835e9f4c9f9a5f334bc7d18, type: 3}
       propertyPath: m_Name
       value: Monster (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5389448965292195865, guid: 80dbe638e835e9f4c9f9a5f334bc7d18, type: 3}
+      propertyPath: <AttackDamage>k__BackingField
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7958053391358446181, guid: 80dbe638e835e9f4c9f9a5f334bc7d18, type: 3}
       propertyPath: m_LocalPosition.x
