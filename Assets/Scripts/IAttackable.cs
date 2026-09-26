@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IAttackable
 {
-    // Monster 공격
+    public GameObject Gameobject { get; }
 }

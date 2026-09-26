@@ -35,9 +35,16 @@ public class InGameUIManager : MonoBehaviour
     private void BindButtonEvents()
     {
         _howToPlayUIStartButton.onClick.AddListener(PressToPlay);
-        _pauseQUIExitButton.onClick.AddListener(OnGamePause);
+        
         _pauseQUIContinueButton.onClick.AddListener(OnClickContinue);
-        _pauseQUIExitButton.onClick.AddListener(OnClickExit);
+        _pauseQUIExitButton.onClick.AddListener(OnClickUIExit);
+        
+        _clearQUIExitButton.onClick.AddListener(OnClickUIExit);
+        _clearQUIAgainButton.onClick.AddListener(OnClickRetryGame);
+        
+        _deadQUIExitButton.onClick.AddListener(OnClickUIExit);
+        _deadQUIAgainButton.onClick.AddListener(OnClickRetryGame);
+        
     }
 
     private void BindGameFlowEvents()
@@ -45,27 +52,50 @@ public class InGameUIManager : MonoBehaviour
         GameManager.Instance.OnGameStart += OnGameStart;
         GameManager.Instance.OnGamePause += OnGamePause;
         GameManager.Instance.OnGameResume += OnGameResume;
+        GameManager.Instance.OnGameOver += OnGameOver;
     }
 
     private void UnbindGameFlowEvents()
     {
+        if (GameManager.Instance == null)
+            return;
+        
         GameManager.Instance.OnGameStart -= OnGameStart;
         GameManager.Instance.OnGamePause -= OnGamePause;
         GameManager.Instance.OnGameResume -= OnGameResume;
+        GameManager.Instance.OnGameOver -= OnGameOver;
     }
 
     private void UnbindButtonEvents()
     {
+        if (GameManager.Instance == null)
+            return;
+        
         _howToPlayUIStartButton.onClick.RemoveListener(PressToPlay);
-        _pauseQUIExitButton.onClick.RemoveListener(OnGamePause);
+        
         _pauseQUIContinueButton.onClick.RemoveListener(OnClickContinue);
-        _pauseQUIExitButton.onClick.RemoveListener(OnClickExit);
+        _pauseQUIExitButton.onClick.RemoveListener(OnClickUIExit);
+        
+        _clearQUIExitButton.onClick.RemoveListener(OnClickUIExit);
+        _clearQUIAgainButton.onClick.RemoveListener(OnClickRetryGame);
+        
+        _deadQUIExitButton.onClick.RemoveListener(OnClickUIExit);
+        _deadQUIAgainButton.onClick.RemoveListener(OnClickRetryGame);
+        
     }
 
     private void BeforePlaying() =>GameManager.Instance.PauseGame();
     private void PressToPlay() => GameManager.Instance.StartGame();
     private void OnClickContinue() => GameManager.Instance.ResumeGame();
-    private void OnClickExit() => GameManager.Instance.LoadScene("GameTitle");
+    private void OnClickUIExit()
+    {
+        GameManager.Instance.LoadScene("GameTitle");
+        
+        if (_bgm != null)
+        {
+            _bgm.Stop();
+        }
+    }
     
     private void OnGameStart()
     {
@@ -99,9 +129,12 @@ public class InGameUIManager : MonoBehaviour
             _bgm.Play();
         }
     }
-
+    
     private void OnGameOver()
     {
+        if(!_isPressedDeathKey)
+            return;
+        
         _deadUI.SetActive(true);
         
         if (_bgm != null)
@@ -146,5 +179,38 @@ public class InGameUIManager : MonoBehaviour
     private void LateUpdate()
     {
         OnGamePause();
+        OnGameClear();
+        OnGameOver();
     }
+    
+    // + Clear 관련
+    private KeyCode _clearKey = KeyCode.C; // 임시 설정
+    private bool _isPressedClearKey => Input.GetKeyDown(_clearKey);
+    [SerializeField] private Button _clearQUIAgainButton;
+    [SerializeField] private Button _clearQUIExitButton;
+
+    private void OnGameClear()
+    {
+        if(!_isPressedClearKey)
+            return;
+        
+        _clearUI.SetActive(true);
+        
+        if (_bgm != null)
+        {
+            _bgm.Stop();
+        }
+    }
+
+    private void OnClickRetryGame()
+    {
+        GameManager.Instance.LoadScene("InGameUI");
+    }
+    
+    // + Gameover 관련(Again, Exit)
+    private KeyCode _deathKey = KeyCode.V; // 임시 설정
+    private bool _isPressedDeathKey => Input.GetKeyDown(_deathKey);
+    [SerializeField] private Button _deadQUIAgainButton;
+    [SerializeField] private Button _deadQUIExitButton;
+    
 }

@@ -5,39 +5,37 @@ using UnityEngine;
 
 public class MonsterBase : MonoBehaviour, IAttackable
 {
-    [SerializeField] private int _attackDamage;
     [SerializeField] private Pattern _currentPattern;
     
+    [field: SerializeField] public int AttackDamage { get; private set; }
     [field: SerializeField] public float MoveSpeed { get; private set; }
 
-    private Patrol _Patrol;
-    private Chase _Chase;
-    
-    // [SerializeField] private Animator _animator;
-
+    private Patrol _patrol;
+    private Chase _chase;
+    private Attack _attack;
 
     // --------------------
 
     private void Awake() => CacheComponents();
 
     private void Start() => Init();
+
+    private void Update() => _currentPattern.OnAction();
     
     // --------------------
 
+    public GameObject Gameobject { get => gameObject; }
+
     private void CacheComponents()
     {
-        _Patrol = GetComponent<Patrol>();
-        _Chase = GetComponent<Chase>();
+        _patrol = GetComponent<Patrol>();
+        _chase = GetComponent<Chase>();
+        _attack = GetComponent<Attack>();
     }
 
     private void Init()
     {
         ChangePatrolPattern();
-    }
-    
-    public void DoAction()
-    {
-        _currentPattern.OnAction();
     }
     
     public void ChangeChasePattern()
@@ -48,6 +46,11 @@ public class MonsterBase : MonoBehaviour, IAttackable
     public void ChangePatrolPattern()
     {
         _currentPattern = GetComponent<Patrol>();
-        _Patrol.CalculateStartPosition();
+        _patrol.CalculateStartPosition();
+    }
+
+    public void ChangeAttackPattern()
+    {
+        _currentPattern = GetComponent<Attack>();
     }
 }
