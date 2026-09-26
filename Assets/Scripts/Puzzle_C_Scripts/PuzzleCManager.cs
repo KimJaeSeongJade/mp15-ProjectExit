@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PuzzleCManager : PuzzleBase
 {
-    [SerializeField] private List<GoalPoint> _goalPoints = new();
+    [SerializeField] private List<GoalPointSm> _goalPoints = new();
     // [SerializeField] private GameObject _clearUI;
 
     private void Awake()
     {
         if (_goalPoints.Count == 0)
-            _goalPoints.AddRange(FindObjectsOfType<GoalPoint>());
+            _goalPoints.AddRange(FindObjectsOfType<GoalPointSm>());
 
         foreach (var goalPoint in _goalPoints)
         {

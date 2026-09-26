@@ -28,13 +28,15 @@ public class SpawnerPoint : MonoBehaviour
     private void Start()
     {
         Spawn();
-        GameManager.Instance.StartGame();
+        //GameManager.Instance.StartGame();
     }
 
     private void OnDisable() => UnbindGameFlowEvents();
 
     private void Spawn()
     {
+        GameManager.Instance.Puzzles.Clear();
+        
         Instantiate(_player, PlayerSpawnPoint.position, Quaternion.identity);
         Instantiate(_monster, MonsterSpawnPoint.position, Quaternion.identity);
         Instantiate(_puzzleA, _puzzleASpawnPoint.position, Quaternion.identity); 
@@ -59,11 +61,16 @@ public class SpawnerPoint : MonoBehaviour
         
         foreach (PuzzleBase puzzle in _puzzles)
         {
-            if(!puzzle.IsClear) isClearAllPuzzles = false;
-            break;
+            Debug.Log($"{puzzle.Name} / {puzzle.GetType().Name} → IsClear={puzzle.IsClear}");
+            if(!puzzle.IsClear)
+            {
+                isClearAllPuzzles = false;
+                break;
+            }
         }
         
         Debug.Log(isClearAllPuzzles);
+        Debug.Log($"puzzles count: {_puzzles.Count}, all clear: {isClearAllPuzzles}");
 
         if (!isClearAllPuzzles) return;
         

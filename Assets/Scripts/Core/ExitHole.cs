@@ -8,12 +8,9 @@ public class ExitHole : MonoBehaviour
     private void Awake() => gameObject.SetActive(false);
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Entered if");
         if (_playerLayerMask == (1 << other.gameObject.layer))
         {
-            Debug.Log("Progressing if");
             GameManager.Instance.ClearGame();
         }
-        Debug.Log("Exited if");
     }
 }
