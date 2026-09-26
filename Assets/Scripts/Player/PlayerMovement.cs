@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody _rigidbody;
     private PlayerStat _playerStat;
     private PlayerController _controller;
-    
+    // dsd
     private float _moveSpeed => _playerStat.MoveSpeed;
 
     private void Awake() => CacheComponents();
