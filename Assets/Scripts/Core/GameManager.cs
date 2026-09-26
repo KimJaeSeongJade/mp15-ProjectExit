@@ -6,12 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    private void Awake() => SetSingleton();
-    
+    [SerializeField] private List<PuzzleBase> _puzzles = new(3);
+    public List<PuzzleBase> Puzzles => _puzzles;
+    public Action OnPuzzleCleared;
+
     public event Action OnGameStart;
     public event Action OnGameOver;
     public event Action OnGamePause;
     public event Action OnGameResume;
+    
+    private void Awake() => SetSingleton();
 
     // TODO: GameManager가 담당해야 할 게임의 시작/정지/재개/종료에 대한 처리는 여기서 담당합니다.
     
@@ -46,5 +50,15 @@ public class GameManager : Singleton<GameManager>
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void AddPuzzle(PuzzleBase puzzle)
+    {
+        _puzzles.Add(puzzle);
+    }
+
+    public void RemovePuzzle(PuzzleBase puzzle)
+    {
+        _puzzles.Remove(puzzle);
     }
 }

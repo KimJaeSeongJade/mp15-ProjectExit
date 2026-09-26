@@ -25,6 +25,16 @@ public class PuzzleA_Manager : PuzzleBase
       _Rot = false;
    }
 
+   private void Start()
+   {
+      GameManager.Instance.AddPuzzle(this);
+   }
+
+   private void OnDestroy()
+   {
+      GameManager.Instance.RemovePuzzle(this);
+   }
+
 
    public void OnStepPlatform(Platform platform)
    {

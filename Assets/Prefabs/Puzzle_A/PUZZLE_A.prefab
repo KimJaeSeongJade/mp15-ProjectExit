@@ -199,6 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c55656f1d0a883f4aa0f11084335f258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Name>k__BackingField: "\uBC1C\uD310 \uBC1F\uAE30"
   _clearArray:
   - {fileID: 573445323138118662}
   - {fileID: 2054209623730761735}
@@ -209,7 +210,6 @@ MonoBehaviour:
   _base: {fileID: 2100000, guid: 4d7c127af7b8189488d48e583c70a5aa, type: 2}
   _textInfo: {fileID: 2578727681802794251}
   _playerArray: []
-  IsClear: 0
   _Rot: 0
 --- !u!1 &6378159736550773898
 GameObject:

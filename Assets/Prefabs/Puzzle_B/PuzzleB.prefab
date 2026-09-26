@@ -95,6 +95,10 @@ PrefabInstance:
       propertyPath: _puzzleBMessage
       value: 
       objectReference: {fileID: 356550121940478979}
+    - target: {fileID: 5369350648834012184, guid: ab7f1d635c8606e4a9e55da2202588b7, type: 3}
+      propertyPath: <Name>k__BackingField
+      value: "\uBE14\uB7ED \uD14C\uD2B8\uB9AC"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

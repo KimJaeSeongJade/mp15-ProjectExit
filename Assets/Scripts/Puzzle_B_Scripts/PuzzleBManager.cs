@@ -6,12 +6,27 @@ public class PuzzleBManager : PuzzleBase
 {
     [SerializeField] private DetectPlatform _detectPlatform; // 타일을 참조
     [SerializeField] private PuzzleBMessage _puzzleBMessage;
-    
+
+    private void Start()
+    {
+        RegisterPuzzle();
+    }
+
     private void Update()
     {
         JudgePuzzleCleared();
     }
-    
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.RemovePuzzle(this);
+    }
+
+    private void RegisterPuzzle()
+    {
+        GameManager.Instance.AddPuzzle(this);
+    }
+
     // 반환형이 없는 메서드입니다.
     private void JudgePuzzleCleared()
     {

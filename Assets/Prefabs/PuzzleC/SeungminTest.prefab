@@ -171,7 +171,6 @@ Transform:
   - {fileID: 606126884550846662}
   - {fileID: 4572280271443857346}
   - {fileID: 579638459361287733}
-  - {fileID: 7917284278253323226}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4351882198029379237
@@ -592,6 +591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d102eec70f20ec488089d6ac8153882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Name>k__BackingField: "\uD0A4\uC544\uC774\uD15C \uBAA8\uC73C\uAE30"
   _goalPoints: []
   _clearUI: {fileID: 0}
   IsClear: 0
@@ -1061,7 +1061,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c541e17e6d12ba45bd7861dfbe42ea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clearText: {fileID: 1842270929714324366}
+  _clearText: {fileID: 0}
 --- !u!4 &4479970442577753515 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7851623259569777551, guid: ea9b075b3cb1f3b47a8b0bd03063ee4d, type: 3}
@@ -1161,7 +1161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c541e17e6d12ba45bd7861dfbe42ea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clearText: {fileID: 226370957965574390}
+  _clearText: {fileID: 0}
 --- !u!4 &7346156314443248277 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3659341350384784017, guid: c28fedc3b7f7de3439f43e6e0133db58, type: 3}
@@ -1351,4 +1351,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c541e17e6d12ba45bd7861dfbe42ea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clearText: {fileID: 6665989735162582520}
+  _clearText: {fileID: 0}

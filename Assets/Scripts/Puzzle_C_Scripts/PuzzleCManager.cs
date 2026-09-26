@@ -5,9 +5,6 @@ using UnityEngine;
 public class PuzzleCManager : PuzzleBase
 {
     [SerializeField] private List<GoalPoint> _goalPoints = new();
-   // [SerializeField] private GameObject _clearUI;
-    
-    public bool IsClear = false;
     // [SerializeField] private GameObject _clearUI;
 
     private void Awake()
@@ -19,7 +16,12 @@ public class PuzzleCManager : PuzzleBase
         {
             goalPoint.OnClearStateChanged += HandleGoalPointClearChanged;
         }
-        //_clearUI.SetActive(false);
+        // _clearUI.SetActive(false);
+    }
+
+    private void Start()
+    {
+        GameManager.Instance.AddPuzzle(this);
     }
 
     private void OnDestroy()
@@ -29,6 +31,8 @@ public class PuzzleCManager : PuzzleBase
             if (goalPoint != null)
                 goalPoint.OnClearStateChanged -= HandleGoalPointClearChanged;
         }
+        
+        GameManager.Instance.RemovePuzzle(this);
     }
 
     private void HandleGoalPointClearChanged(bool isCheck)
@@ -51,8 +55,7 @@ public class PuzzleCManager : PuzzleBase
     {
         Debug.Log("Game Clear!");
 
-        /*if (_clearUI != null)
-            _clearUI.SetActive(true);*/
+        // if (_clearUI != null) _clearUI.SetActive(true);
         IsClear = true;
     }
 }
