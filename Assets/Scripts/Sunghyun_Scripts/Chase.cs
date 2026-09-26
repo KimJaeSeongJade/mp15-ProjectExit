@@ -71,7 +71,7 @@ public class Chase : Pattern
                 _idleRoutine = null;
             }   
 
-            _lastPosition = _playerTransform.position; // Debug. 이거 이래도 되나...?
+            _lastPosition = _playerTransform.position;
             
             // 공격
             if (Vector3.Distance(transform.position, _playerTransform.position) < 2f)
