@@ -24,16 +24,20 @@ public class PlayerControllerSm : MonoBehaviour, IDamageable, IInteractor
     private Transform _cameraTransform;
     
     private void Awake() => CacheComponents();
+    private void OnEnable() => BindGameFlowEvents();
     private void FixedUpdate() => _movement.Move();
     private void Update()
     {
+        if(GameManager.Instance.IsGameClear) return;
+        
         DetectItem();
         GetInteract();
         _movement.Rotate();
     }
 
     private void LateUpdate() => SetCameraTransform();
-
+    private void OnDisable() => UnbindGameFlowEvents();
+    
     public void TakeDamage(int damage)
     {
         _stat.PlayerHealth -= damage;
@@ -89,6 +93,24 @@ public class PlayerControllerSm : MonoBehaviour, IDamageable, IInteractor
 
     private void SetCameraTransform()
     {
+        if (GameManager.Instance.IsGameClear) return;
+        
         _cameraTransform.SetPositionAndRotation(_cameraPivot.position, _cameraPivot.rotation);
+    }
+
+    private void BindGameFlowEvents()
+    {
+        GameManager.Instance.OnGameClear += OnGameClear;
+    }
+
+    private void UnbindGameFlowEvents()
+    {
+        GameManager.Instance.OnGameClear -= OnGameClear;
+    }
+
+    private void OnGameClear()
+    {
+        GetPlayerRigidbody.useGravity = true;
+        Destroy(GetComponent<Collider>());
     }
 }

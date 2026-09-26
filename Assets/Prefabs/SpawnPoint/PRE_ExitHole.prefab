@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6350803853892870492}
   - component: {fileID: 4030133719707611932}
   - component: {fileID: 7218630294938356768}
+  - component: {fileID: 3879456316035501918}
   m_Layer: 0
   m_Name: PRE_ExitHole
   m_TagString: Untagged
@@ -103,5 +104,20 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.35
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3879456316035501918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7280870811968955568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cba6f041a8e6cc443ae5131a8f5db707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
