@@ -212,7 +212,7 @@ public class InGameUIManager : MonoBehaviour
 
     private void OnClickRetryGame()
     {
-        GameManager.Instance.LoadScene("InGameUI");
+        GameManager.Instance.LoadScene("MainGame");
     }
     
     // + Gameover 관련(Again, Exit)
