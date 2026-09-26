@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ClearUI : MonoBehaviour
+public class ClearMiniUI : MonoBehaviour
 {
-    /*[SerializeField] TextMeshProUGUI _clearText;
+    [SerializeField] TextMeshProUGUI _clearText;
 
     private void Awake()
     {
@@ -15,5 +15,5 @@ public class ClearUI : MonoBehaviour
     private void OnDestroy()
     {
         _clearText.enabled = true;
-    }*/
+    }
 }
