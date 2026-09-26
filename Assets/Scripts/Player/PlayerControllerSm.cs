@@ -43,12 +43,6 @@ public class PlayerControllerSm : MonoBehaviour, IDamageable, IInteractor
     {
         _stat.PlayerHealth -= damage;
         Debug.Log(_stat.PlayerHealth);
-        if (_isDead) Die();
-    }
-    
-    public void Die()
-    {
-        // 게임오버 씬
     }
     
     public void TryInteract()
