@@ -171,6 +171,7 @@ Transform:
   - {fileID: 606126884550846662}
   - {fileID: 4572280271443857346}
   - {fileID: 579638459361287733}
+  - {fileID: 7917284278253323226}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4351882198029379237
@@ -335,7 +336,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5711152023628593172}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -343,7 +344,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8.06, y: 1.5}
+  m_AnchoredPosition: {x: 7.07, y: 1.5}
   m_SizeDelta: {x: 5, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4286900372538346574
@@ -593,8 +594,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: "\uD0A4\uC544\uC774\uD15C \uBAA8\uC73C\uAE30"
   _goalPoints: []
-  _clearUI: {fileID: 0}
-  IsClear: 0
 --- !u!1001 &255533115121648979
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -702,6 +701,14 @@ PrefabInstance:
     - target: {fileID: 173146472832676728, guid: bc241b3d9914af94c908181263e03880, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1437026297091824114, guid: bc241b3d9914af94c908181263e03880, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1437026297091824114, guid: bc241b3d9914af94c908181263e03880, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 7.07
       objectReference: {fileID: 0}
     - target: {fileID: 3030117934417377749, guid: bc241b3d9914af94c908181263e03880, type: 3}
       propertyPath: m_fontStyle
@@ -1061,7 +1068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c541e17e6d12ba45bd7861dfbe42ea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clearText: {fileID: 0}
+  _clearText: {fileID: 1842270929714324366}
 --- !u!4 &4479970442577753515 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7851623259569777551, guid: ea9b075b3cb1f3b47a8b0bd03063ee4d, type: 3}
@@ -1161,7 +1168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c541e17e6d12ba45bd7861dfbe42ea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clearText: {fileID: 0}
+  _clearText: {fileID: 226370957965574390}
 --- !u!4 &7346156314443248277 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3659341350384784017, guid: c28fedc3b7f7de3439f43e6e0133db58, type: 3}
@@ -1351,4 +1358,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c541e17e6d12ba45bd7861dfbe42ea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clearText: {fileID: 0}
+  _clearText: {fileID: 6665989735162582520}
