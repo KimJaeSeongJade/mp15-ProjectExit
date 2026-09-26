@@ -24,7 +24,13 @@ public class SpawnerPoint : MonoBehaviour
     private List<PuzzleBase> _puzzles = GameManager.Instance.Puzzles;
 
     private void OnEnable() => BindGameFlowEvents();
-    private void Start() => Spawn();
+
+    private void Start()
+    {
+        Spawn();
+        GameManager.Instance.StartGame();
+    }
+
     private void OnDisable() => UnbindGameFlowEvents();
 
     private void Spawn()

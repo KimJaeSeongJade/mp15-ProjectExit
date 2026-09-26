@@ -20,8 +20,6 @@ public class GameManager : Singleton<GameManager>
     public bool IsGameClear { get; private set; }
 
     private void Awake() => SetSingleton();
-
-    // TODO: GameManager가 담당해야 할 게임의 시작/정지/재개/종료에 대한 처리는 여기서 담당합니다.
     
     public void StartGame()
     {
@@ -72,16 +70,5 @@ public class GameManager : Singleton<GameManager>
     public void RemovePuzzle(PuzzleBase puzzle)
     {
         _puzzles.Remove(puzzle);
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            foreach (PuzzleBase p in _puzzles)
-            {
-                p.IsClear = true;
-            }
-        }
     }
 }
