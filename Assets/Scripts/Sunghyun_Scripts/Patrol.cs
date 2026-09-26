@@ -23,6 +23,8 @@ public class Patrol : Pattern
 
     private void OnDrawGizmos()
     {
+        if (_wayPoints.Count <= 0 || _wayPoints[0] == null) return;
+        
         Gizmos.color = Color.green;
         for (int i = 0; i < _wayPoints.Count - 1; i++)
         {

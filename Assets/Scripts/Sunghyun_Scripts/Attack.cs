@@ -67,12 +67,7 @@ public class Attack : Pattern
 
     private IEnumerator AttackRoutine()
     {
-        // 애니메이션
-        //_animator.SetBool();
-
-        Debug.Log("공격중........");
         yield return new WaitForSeconds(_delayTime); // 애니메이션 중간정도 시간
-        Debug.Log("공격완료......");
         
         ShootRay(); // Raycast 쏘고
 
@@ -80,9 +75,7 @@ public class Attack : Pattern
         
         // 공격 쿨타임 구현
         _isCoolingDown = true;
-        Debug.Log("쿨타임돌아가는중........");
         yield return new WaitForSeconds(_attackCooldown);
-        Debug.Log("쿨타임 끝남........");
         _isCoolingDown = false;
 
         IsAttacking = false;

@@ -15,12 +15,6 @@ public class MonsterAnimController : MonoBehaviour
     private bool _isAttack;
     private bool _isIdle;
 
-    // 움직일 때 값을 true로 받게 하면 됩니다.
-    // private bool _isMove => _monsterController._isMove;
-    
-    // 공격할 때 값을 true로 받게 하면 됩니다.
-    // private bool _isAttack => _monsterController._isAttack;
-
     private void Awake()
     {
         _chase = GetComponentInParent<Chase>();
