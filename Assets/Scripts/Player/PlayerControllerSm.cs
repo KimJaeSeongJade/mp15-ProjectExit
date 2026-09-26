@@ -29,6 +29,7 @@ public class PlayerControllerSm : MonoBehaviour, IDamageable, IInteractor
     private void Update()
     {
         if(GameManager.Instance.IsGameClear) return;
+        if(Time.timeScale == 0) return;
         
         DetectItem();
         GetInteract();

@@ -20,6 +20,8 @@ public class PlayerAnimController : MonoBehaviour
     
     private void Update()
     {
+        if(Time.timeScale == 0) return;
+        
         SetMove();
         SetDead();
     }
