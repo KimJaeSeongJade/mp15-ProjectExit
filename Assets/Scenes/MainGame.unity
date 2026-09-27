@@ -217,7 +217,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7647665842477324865, guid: 1d6e66616597b8940a73a427f63b3a02, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 36615099}
   m_SourcePrefab: {fileID: 100100000, guid: 1d6e66616597b8940a73a427f63b3a02, type: 3}
 --- !u!1 &36615095 stripped
 GameObject:
@@ -246,6 +249,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &36615098 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2341928443265270882, guid: 1d6e66616597b8940a73a427f63b3a02, type: 3}
+  m_PrefabInstance: {fileID: 36615094}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &36615099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36615095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c76a71c8229e79440a0b77bb41c661e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _againButton: {fileID: 36615096}
+  _exitButton: {fileID: 36615097}
+  _timeChecker: {fileID: 644255311}
+  _timeText: {fileID: 36615098}
+  _titleScene: GameTitle
+  _gameScene: MainGame
 --- !u!224 &245472810 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 42877694904516153, guid: 1fa9ce62b8e588d45a2be685341d6bfc, type: 3}
@@ -506,8 +538,6 @@ MonoBehaviour:
   _pauseQUIContinueButton: {fileID: 1428647843}
   _clearQUIAgainButton: {fileID: 36615096}
   _clearQUIExitButton: {fileID: 36615097}
-  _deadQUIAgainButton: {fileID: 589322861}
-  _deadQUIExitButton: {fileID: 589322860}
 --- !u!4 &493607032
 Transform:
   m_ObjectHideFlags: 0
@@ -623,7 +653,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4677184233109420367, guid: 1689e9f15082df246a5dbb1fdcdb672a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 589322863}
   m_SourcePrefab: {fileID: 100100000, guid: 1689e9f15082df246a5dbb1fdcdb672a, type: 3}
 --- !u!1 &589322859 stripped
 GameObject:
@@ -652,6 +685,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &589322862 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2156821087827719017, guid: 1689e9f15082df246a5dbb1fdcdb672a, type: 3}
+  m_PrefabInstance: {fileID: 589322858}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &589322863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589322859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 692b662b576403845b001bf67f12b572, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _againButton: {fileID: 589322861}
+  _exitButton: {fileID: 589322860}
+  _timeChecker: {fileID: 644255311}
+  _timeText: {fileID: 589322862}
+  _titleScene: GameTitle
+  _gameScene: MainGame
 --- !u!1 &610909024
 GameObject:
   m_ObjectHideFlags: 0

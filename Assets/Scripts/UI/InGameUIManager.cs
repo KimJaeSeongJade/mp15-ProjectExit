@@ -34,6 +34,18 @@ public class InGameUIManager : MonoBehaviour
         UnbindButtonEvents();
         UnbindGameFlowEvents();
     }
+    
+    // Test---
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            foreach (PuzzleBase p in GameManager.Instance.Puzzles)
+            {
+                p.IsClear = true;
+            }
+        }
+    }
 
     private void BindButtonEvents()
     {
@@ -41,12 +53,6 @@ public class InGameUIManager : MonoBehaviour
         
         _pauseQUIContinueButton.onClick.AddListener(OnClickContinue);
         _pauseQUIExitButton.onClick.AddListener(OnClickUIExit);
-        
-        _clearQUIExitButton.onClick.AddListener(OnClickUIExit);
-        _clearQUIAgainButton.onClick.AddListener(OnClickRetryGame);
-        
-        _deadQUIExitButton.onClick.AddListener(OnClickUIExit);
-        _deadQUIAgainButton.onClick.AddListener(OnClickRetryGame);
     }
 
     private void BindGameFlowEvents()
@@ -79,13 +85,6 @@ public class InGameUIManager : MonoBehaviour
         
         _pauseQUIContinueButton.onClick.RemoveListener(OnClickContinue);
         _pauseQUIExitButton.onClick.RemoveListener(OnClickUIExit);
-        
-        _clearQUIExitButton.onClick.RemoveListener(OnClickUIExit);
-        _clearQUIAgainButton.onClick.RemoveListener(OnClickRetryGame);
-        
-        _deadQUIExitButton.onClick.RemoveListener(OnClickUIExit);
-        _deadQUIAgainButton.onClick.RemoveListener(OnClickRetryGame);
-        
     }
 
     private void BeforePlaying() =>GameManager.Instance.PauseGame();
@@ -137,9 +136,6 @@ public class InGameUIManager : MonoBehaviour
     
     private void OnGameOver()
     {
-        if(!_isPressedDeathKey)
-            return;
-        
         _deadUI.SetActive(true);
         
         if (_bgm != null)
@@ -188,11 +184,7 @@ public class InGameUIManager : MonoBehaviour
     {
         OnGamePause();
         OnGameClear();
-        OnGameOver();
     }
-    
-    [SerializeField] private Button _clearQUIAgainButton;
-    [SerializeField] private Button _clearQUIExitButton;
 
     private void OnGameClear()
     {
@@ -212,10 +204,5 @@ public class InGameUIManager : MonoBehaviour
         GameManager.Instance.LoadScene("MainGame");
     }
     
-    // + Gameover 관련(Again, Exit)
-    private KeyCode _deathKey = KeyCode.V; // 임시 설정
-    private bool _isPressedDeathKey => Input.GetKeyDown(_deathKey);
-    [SerializeField] private Button _deadQUIAgainButton;
-    [SerializeField] private Button _deadQUIExitButton;
     
 }
