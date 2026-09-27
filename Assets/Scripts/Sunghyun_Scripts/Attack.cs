@@ -71,14 +71,13 @@ public class Attack : Pattern
         
         ShootRay(); // Raycast 쏘고
 
+        IsAttacking = false;
         _isAttacked = false;
         
         // 공격 쿨타임 구현
         _isCoolingDown = true;
         yield return new WaitForSeconds(_attackCooldown);
         _isCoolingDown = false;
-
-        IsAttacking = false;
         
         _monsterBase.ChangeChasePattern();
     }
@@ -100,6 +99,5 @@ public class Attack : Pattern
             
             damageable.TakeDamage(_attackDamage);
         }
-
     }
 }

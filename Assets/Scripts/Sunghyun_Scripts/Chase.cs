@@ -57,6 +57,7 @@ public class Chase : Pattern
 
                 if (Vector3.Distance(transform.position, _lastPosition) < 0.1f)
                 {
+                    IsIdling = true;
                     _remainPositon = false;
                     _idleRoutine = StartCoroutine(_IdleBeforePatrol());
                 }
@@ -107,7 +108,6 @@ public class Chase : Pattern
 
     private IEnumerator _IdleBeforePatrol()
     {
-        IsIdling = true;
         yield return _waitForSeconds;
         IsIdling = false;
         _monsterBase.ChangePatrolPattern();
