@@ -13,7 +13,7 @@ public class PuzzleClearListUI : MonoBehaviour
     [SerializeField] private List<Toggle> _toggles;
     
     private void Start() => StartCoroutine(InitRoutine());
-    private void OnEnable() => PuzzleManager.Instance.OnPuzzleCleared += RefreshText;
+    private void OnEnable() => PuzzleManager.Instance.OnClearPuzzle += RefreshText;
     
     private void RefreshText()
     {

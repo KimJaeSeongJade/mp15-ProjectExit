@@ -7,7 +7,8 @@ public class PuzzleManager : Singleton<PuzzleManager>
 {
     [SerializeField] private List<PuzzleBase> _puzzles = new(3);
     public List<PuzzleBase> Puzzles => _puzzles;
-    public Action OnPuzzleCleared;
+    public event Action<bool> OnClearAllPuzzles;
+    public event Action OnClearPuzzle;
 
     private void Awake() => SetSingleton();
 
@@ -19,5 +20,28 @@ public class PuzzleManager : Singleton<PuzzleManager>
     public void RemovePuzzle(PuzzleBase puzzle)
     {
         _puzzles.Remove(puzzle);
+    }
+
+    public void ClearPuzzle()
+    {
+        OnClearPuzzle?.Invoke();
+        
+        CheckClearAllPuzzles();
+    }
+    
+    private void CheckClearAllPuzzles()
+    {
+        bool isClearAllPuzzles = true;
+        
+        foreach (PuzzleBase puzzle in _puzzles)
+        {
+            if(!puzzle.IsClear)
+            {
+                isClearAllPuzzles = false;
+                break;
+            }
+        }
+
+        OnClearAllPuzzles?.Invoke(isClearAllPuzzles);
     }
 }
