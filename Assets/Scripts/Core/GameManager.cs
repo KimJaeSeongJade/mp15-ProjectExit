@@ -6,10 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    [SerializeField] private List<PuzzleBase> _puzzles = new(3);
-    public List<PuzzleBase> Puzzles => _puzzles;
-    public Action OnPuzzleCleared;
-
     public event Action OnGameStart;
     public event Action OnGameOver;
     public event Action OnGamePause;
@@ -28,7 +24,6 @@ public class GameManager : Singleton<GameManager>
         Time.timeScale = 1;
         IsGameClear = false;
         IsGameRunning = true;
-        // 이후 필요한 로직 작성
     }
 
     public void PauseGame()
@@ -36,7 +31,6 @@ public class GameManager : Singleton<GameManager>
         OnGamePause?.Invoke();
         Time.timeScale = 0;
         IsGameRunning = false;
-        // 이후 필요한 로직 작성
     }
     
     public void ResumeGame()
@@ -44,7 +38,6 @@ public class GameManager : Singleton<GameManager>
         OnGameResume?.Invoke();
         Time.timeScale = 1;
         IsGameRunning = true;
-        // 이후 필요한 로직 작성
     }
 
     public void GameOver()
@@ -52,7 +45,6 @@ public class GameManager : Singleton<GameManager>
         OnGameOver?.Invoke();
         Time.timeScale = 1;
         IsGameRunning = false;
-        // 이후 필요한 로직 작성
     }
 
     public void ClearGame()
@@ -71,15 +63,5 @@ public class GameManager : Singleton<GameManager>
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
-    }
-
-    public void AddPuzzle(PuzzleBase puzzle)
-    {
-        _puzzles.Add(puzzle);
-    }
-
-    public void RemovePuzzle(PuzzleBase puzzle)
-    {
-        _puzzles.Remove(puzzle);
     }
 }

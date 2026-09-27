@@ -19,12 +19,12 @@ public class PuzzleBManager : PuzzleBase
 
     private void OnDestroy()
     {
-        GameManager.Instance.RemovePuzzle(this);
+        PuzzleManager.Instance.RemovePuzzle(this);
     }
 
     private void RegisterPuzzle()
     {
-        GameManager.Instance.AddPuzzle(this);
+        PuzzleManager.Instance.AddPuzzle(this);
     }
 
     // 반환형이 없는 메서드입니다.

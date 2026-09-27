@@ -27,12 +27,12 @@ public class PuzzleA_Manager : PuzzleBase
 
    private void Start()
    {
-      GameManager.Instance.AddPuzzle(this);
+      PuzzleManager.Instance.AddPuzzle(this);
    }
 
    private void OnDestroy()
    {
-      GameManager.Instance.RemovePuzzle(this);
+      PuzzleManager.Instance.RemovePuzzle(this);
    }
 
 
