@@ -18,6 +18,7 @@ public class GameManager : Singleton<GameManager>
 
     public GameObject ExitHole { get; set; }
     public bool IsGameClear { get; private set; }
+    public bool IsGameRunning { get; private set; }
 
     private void Awake() => SetSingleton();
     
@@ -26,6 +27,7 @@ public class GameManager : Singleton<GameManager>
         OnGameStart?.Invoke();
         Time.timeScale = 1;
         IsGameClear = false;
+        IsGameRunning = true;
         // 이후 필요한 로직 작성
     }
 
@@ -33,6 +35,7 @@ public class GameManager : Singleton<GameManager>
     {
         OnGamePause?.Invoke();
         Time.timeScale = 0;
+        IsGameRunning = false;
         // 이후 필요한 로직 작성
     }
     
@@ -40,13 +43,15 @@ public class GameManager : Singleton<GameManager>
     {
         OnGameResume?.Invoke();
         Time.timeScale = 1;
+        IsGameRunning = true;
         // 이후 필요한 로직 작성
     }
 
     public void GameOver()
     {
         OnGameOver?.Invoke();
-        Time.timeScale = 0;
+        Time.timeScale = 1;
+        IsGameRunning = false;
         // 이후 필요한 로직 작성
     }
 
@@ -55,6 +60,7 @@ public class GameManager : Singleton<GameManager>
         OnGameClear?.Invoke();
         Time.timeScale = 1;
         IsGameClear = true;
+        IsGameRunning = false;
     }
 
     public void RestartGame()

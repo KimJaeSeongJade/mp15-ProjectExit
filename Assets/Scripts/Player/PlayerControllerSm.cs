@@ -22,14 +22,20 @@ public class PlayerControllerSm : MonoBehaviour, IDamageable, IInteractor
     public Rigidbody GetPlayerRigidbody => _movement._rigidbody;
     
     private Transform _cameraTransform;
+
+    private bool HasControl => GameManager.Instance.IsGameRunning;
     
     private void Awake() => CacheComponents();
     private void OnEnable() => BindGameFlowEvents();
-    private void FixedUpdate() => _movement.Move();
+    private void FixedUpdate()
+    {
+        if(!HasControl) return;
+        
+        _movement.Move();
+    }
     private void Update()
     {
-        if(GameManager.Instance.IsGameClear) return;
-        if(Time.timeScale == 0) return;
+        if(!HasControl) return;
         
         DetectItem();
         GetInteract();
@@ -43,6 +49,8 @@ public class PlayerControllerSm : MonoBehaviour, IDamageable, IInteractor
     {
         _stat.PlayerHealth -= damage;
         Debug.Log(_stat.PlayerHealth);
+
+        if (_stat.PlayerHealth <= 0) Die();
     }
     
     public void TryInteract()
@@ -53,7 +61,12 @@ public class PlayerControllerSm : MonoBehaviour, IDamageable, IInteractor
             Debug.Log($"TryInteract: {name} interacted with {_item}");
         }
     }
-    
+
+    private void Die()
+    {
+        GameManager.Instance.GameOver();
+    }
+
     private void DetectItem()
     {
         Ray ray = new Ray(_muzzlePoint.position, _muzzlePoint.forward);
@@ -63,7 +76,7 @@ public class PlayerControllerSm : MonoBehaviour, IDamageable, IInteractor
         {
             Debug.DrawRay(ray.origin, ray.direction * _rayDistance, Color.red);
             _item = hit.collider.GetComponent<IInteractable>();
-            Debug.Log($"DetectItem: {name} interacted with {_item}");
+            // Debug.Log($"DetectItem: {name} interacted with {_item}");
         }
         else
         {

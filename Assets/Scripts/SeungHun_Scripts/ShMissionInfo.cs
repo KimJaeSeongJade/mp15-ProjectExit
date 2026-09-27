@@ -14,6 +14,7 @@ public class ShMissionInfo : MonoBehaviour
     
     private float _playTimeSecond;
     private int _playTimeMinute;
+    private bool _isTimerRunning => GameManager.Instance.IsGameRunning;
 
     private void Awake() => InitToggles();
     
@@ -32,6 +33,8 @@ public class ShMissionInfo : MonoBehaviour
 
     private void CountPlayTime() // 60초가 넘어가면 1분으로 바꿔줍니다.
     {
+        if (!_isTimerRunning) return; // TODO: 일단 조치는 여기다 해놓겠는데. 이미 TimeChecker 객체가 있습니다.
+        
         _playTimeSecond += Time.deltaTime;
         if (_playTimeSecond >= 59f)
         {
