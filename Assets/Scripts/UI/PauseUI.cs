@@ -23,7 +23,6 @@ public class PauseUI : MonoBehaviour
         RefreshPuzzleList();
         RefreshPlayTime();
     }
-    private void Start() => gameObject.SetActive(false);
     private void OnDisable() => UnbindButtonEvents();
 
     private void BindButtonEvents()

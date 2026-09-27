@@ -29,6 +29,8 @@ public class InGameUIManager : MonoBehaviour
         BindGameFlowEvents();
     }
 
+    private void Update() => Pause();
+
     private void OnDisable()
     {
         UnbindButtonEvents();
@@ -38,9 +40,6 @@ public class InGameUIManager : MonoBehaviour
     private void BindButtonEvents()
     {
         _howToPlayUIStartButton.onClick.AddListener(PressToPlay);
-        
-        _pauseQUIContinueButton.onClick.AddListener(OnClickContinue);
-        _pauseQUIExitButton.onClick.AddListener(OnClickUIExit);
     }
 
     private void BindGameFlowEvents()
@@ -70,9 +69,6 @@ public class InGameUIManager : MonoBehaviour
             return;
         
         _howToPlayUIStartButton.onClick.RemoveListener(PressToPlay);
-        
-        _pauseQUIContinueButton.onClick.RemoveListener(OnClickContinue);
-        _pauseQUIExitButton.onClick.RemoveListener(OnClickUIExit);
     }
 
     private void BeforePlaying() =>GameManager.Instance.PauseGame();
@@ -90,6 +86,7 @@ public class InGameUIManager : MonoBehaviour
     
     private void OnGameStart()
     {
+        Debug.Log("??");
         _howToPlayUI.SetActive(false);
         _inGameUI.SetActive(true);
         _playerHpUI.SetActive(true);
@@ -101,9 +98,6 @@ public class InGameUIManager : MonoBehaviour
 
     private void OnGamePause()
     {
-        if(!_isPressedPauseKey)
-            return;
-        
         _pauseQUI.SetActive(true);
 
         if (_bgm != null)
@@ -138,7 +132,6 @@ public class InGameUIManager : MonoBehaviour
         
         _clearUI.SetActive(false);
         _howToPlayUI.SetActive(true);
-        
         _pauseQUI.SetActive(false);
         _deadUI.SetActive(false);
         _inGameUI.SetActive(false);
@@ -164,13 +157,9 @@ public class InGameUIManager : MonoBehaviour
     // + InGamePause 관련
     [SerializeField] private KeyCode _pauseKey = KeyCode.Q;
     private bool _isPressedPauseKey => Input.GetKeyDown(_pauseKey);
-    
-    [SerializeField] private Button _pauseQUIExitButton;
-    [SerializeField] private Button _pauseQUIContinueButton;
 
     private void LateUpdate()
     {
-        OnGamePause();
         OnGameClear();
     }
 
@@ -184,6 +173,13 @@ public class InGameUIManager : MonoBehaviour
         {      
             _bgm.Stop();    
         }    
+    }
+
+    private void Pause()
+    {
+        if (!_isPressedPauseKey) return;
+        
+        GameManager.Instance.PauseGame();
     }
 
     private void OnClickRetryGame()
