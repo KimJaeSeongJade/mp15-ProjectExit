@@ -21,7 +21,7 @@ public class SpawnerPoint : MonoBehaviour
 
 
     private GameObject _exitHoleInstance;
-    private List<PuzzleBase> _puzzles = GameManager.Instance.Puzzles;
+    private List<PuzzleBase> _puzzles => PuzzleManager.Instance.Puzzles;
 
     private void OnEnable() => BindGameFlowEvents();
 
@@ -35,7 +35,7 @@ public class SpawnerPoint : MonoBehaviour
 
     private void Spawn()
     {
-        GameManager.Instance.Puzzles.Clear();
+        PuzzleManager.Instance.Puzzles.Clear();
         
         Instantiate(_player, PlayerSpawnPoint.position, Quaternion.identity);
         Instantiate(_monster, MonsterSpawnPoint.position, Quaternion.identity);
@@ -47,12 +47,12 @@ public class SpawnerPoint : MonoBehaviour
 
     private void BindGameFlowEvents()
     {
-        GameManager.Instance.OnPuzzleCleared += CheckClearAllPuzzles;   
+        PuzzleManager.Instance.OnPuzzleCleared += CheckClearAllPuzzles;   
     }
 
     private void UnbindGameFlowEvents()
     {
-        GameManager.Instance.OnPuzzleCleared -= CheckClearAllPuzzles;
+        PuzzleManager.Instance.OnPuzzleCleared -= CheckClearAllPuzzles;
     }
 
     private void CheckClearAllPuzzles()

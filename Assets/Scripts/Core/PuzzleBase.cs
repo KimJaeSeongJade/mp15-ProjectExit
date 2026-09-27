@@ -14,9 +14,7 @@ public abstract class PuzzleBase : MonoBehaviour
         set
         {
             _isClear = value;
-            if(_isClear) GameManager.Instance.OnPuzzleCleared?.Invoke();
+            if(_isClear) PuzzleManager.Instance.OnPuzzleCleared?.Invoke();
         }
     }
-    
-    public event Action OnPuzzleCleared;
 }

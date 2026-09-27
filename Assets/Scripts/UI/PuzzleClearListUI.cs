@@ -7,13 +7,13 @@ using TMPro;
 
 public class PuzzleClearListUI : MonoBehaviour
 {
-    private List<PuzzleBase> _puzzles => GameManager.Instance.Puzzles;
+    private List<PuzzleBase> _puzzles => PuzzleManager.Instance.Puzzles;
 
     [SerializeField] private List<TextMeshProUGUI> _tmps;
     [SerializeField] private List<Toggle> _toggles;
     
     private void Start() => StartCoroutine(InitRoutine());
-    private void OnEnable() => GameManager.Instance.OnPuzzleCleared += RefreshText;
+    private void OnEnable() => PuzzleManager.Instance.OnPuzzleCleared += RefreshText;
     
     private void RefreshText()
     {

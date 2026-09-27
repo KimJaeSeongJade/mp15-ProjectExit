@@ -15,7 +15,7 @@ public class PauseUI : MonoBehaviour
     [SerializeField] private TimeChecker _timeChecker;
     [SerializeField] private string _titleScene;
     
-    private List<PuzzleBase> _puzzles => GameManager.Instance.Puzzles;
+    private List<PuzzleBase> _puzzles => PuzzleManager.Instance.Puzzles;
 
     private void OnEnable()
     {

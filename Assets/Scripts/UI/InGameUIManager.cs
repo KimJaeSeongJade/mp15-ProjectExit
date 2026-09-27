@@ -34,18 +34,6 @@ public class InGameUIManager : MonoBehaviour
         UnbindButtonEvents();
         UnbindGameFlowEvents();
     }
-    
-    // Test---
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            foreach (PuzzleBase p in GameManager.Instance.Puzzles)
-            {
-                p.IsClear = true;
-            }
-        }
-    }
 
     private void BindButtonEvents()
     {

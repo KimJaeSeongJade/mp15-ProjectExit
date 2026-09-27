@@ -21,7 +21,7 @@ public class PuzzleCManager : PuzzleBase
 
     private void Start()
     {
-        GameManager.Instance.AddPuzzle(this);
+        PuzzleManager.Instance.AddPuzzle(this);
     }
 
     private void OnDestroy()
@@ -32,7 +32,7 @@ public class PuzzleCManager : PuzzleBase
                 goalPoint.OnClearStateChanged -= HandleGoalPointClearChanged;
         }
         
-        GameManager.Instance.RemovePuzzle(this);
+        PuzzleManager.Instance.RemovePuzzle(this);
     }
 
     private void HandleGoalPointClearChanged(bool isCheck)
