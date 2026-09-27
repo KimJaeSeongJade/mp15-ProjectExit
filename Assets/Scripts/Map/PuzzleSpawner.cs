@@ -47,33 +47,16 @@ public class SpawnerPoint : MonoBehaviour
 
     private void BindGameFlowEvents()
     {
-        PuzzleManager.Instance.OnPuzzleCleared += CheckClearAllPuzzles;   
+        PuzzleManager.Instance.OnClearAllPuzzles += ActivateExitHole;   
     }
 
     private void UnbindGameFlowEvents()
     {
-        PuzzleManager.Instance.OnPuzzleCleared -= CheckClearAllPuzzles;
+        PuzzleManager.Instance.OnClearAllPuzzles -= ActivateExitHole;
     }
 
-    private void CheckClearAllPuzzles()
+    private void ActivateExitHole(bool isActive)
     {
-        bool isClearAllPuzzles = true;
-        
-        foreach (PuzzleBase puzzle in _puzzles)
-        {
-            Debug.Log($"{puzzle.Name} / {puzzle.GetType().Name} → IsClear={puzzle.IsClear}");
-            if(!puzzle.IsClear)
-            {
-                isClearAllPuzzles = false;
-                break;
-            }
-        }
-        
-        Debug.Log(isClearAllPuzzles);
-        Debug.Log($"puzzles count: {_puzzles.Count}, all clear: {isClearAllPuzzles}");
-
-        if (!isClearAllPuzzles) return;
-        
-        _exitHoleInstance.gameObject.SetActive(true);
+        _exitHoleInstance.SetActive(isActive);
     }
 }
