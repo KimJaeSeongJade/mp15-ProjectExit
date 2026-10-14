@@ -72,7 +72,7 @@ public class Chase : Pattern
                 _idleRoutine = null;
             }   
 
-            _lastPosition = _playerTransform.position;
+            _lastPosition = new Vector3(_playerTransform.position.x, 0f, _playerTransform.position.z);
             
             // 공격
             if (Vector3.Distance(transform.position, _playerTransform.position) < 2f)
