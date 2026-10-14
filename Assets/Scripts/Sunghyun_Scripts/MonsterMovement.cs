@@ -6,6 +6,7 @@ public class MonsterMovement : MonoBehaviour
 {
     private MonsterBase _monsterBase;
     private float _moveSpeed;
+    private Vector3 _targetPosition;
 
     // --------------------
     
@@ -23,17 +24,20 @@ public class MonsterMovement : MonoBehaviour
     private void Init()
     {
         _moveSpeed = _monsterBase.MoveSpeed;
+        _targetPosition = new();
     }
     
     
     public void Move(Vector3 targetPosition)
     {
+        _targetPosition = new Vector3(targetPosition.x, 0f, targetPosition.z);
+        
         transform.position = Vector3.MoveTowards(
             transform.position,
-            targetPosition,
+            _targetPosition,
             _moveSpeed * Time.deltaTime
             );
         
-        transform.LookAt(targetPosition);
+        transform.LookAt(_targetPosition);
     }
 }
