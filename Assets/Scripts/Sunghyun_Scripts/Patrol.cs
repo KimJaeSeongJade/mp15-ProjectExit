@@ -9,6 +9,7 @@ public class Patrol : Pattern
 
     private MonsterDetection _detection;
     private MonsterBase _monsterBase;
+    private MonsterMovement _monsterMovement;
     private Vector3 _nextPosition;
     private int _currentWayPointIndex = 0;
     private float _moveSpeed;
@@ -37,6 +38,7 @@ public class Patrol : Pattern
     private void CacheComponents()
     {
         _monsterBase = GetComponent<MonsterBase>();
+        _monsterMovement = GetComponent<MonsterMovement>();
         _detection = GetComponentInChildren<MonsterDetection>();
     }
 
@@ -56,7 +58,7 @@ public class Patrol : Pattern
         
         if (Vector3.Distance(transform.position, _nextPosition) > 0.2f)
         {
-            MoveToPosition();
+            _monsterMovement.Move(_nextPosition);
         }
         else
         {
